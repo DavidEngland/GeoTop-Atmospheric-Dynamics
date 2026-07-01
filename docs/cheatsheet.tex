@@ -1,0 +1,207 @@
+% ============================================================
+% Geometric & Topological Methods in Atmospheric Dynamics
+% Reference Card  —  UAH Graduate Course
+% Compile: pdflatex cheatsheet.tex
+% ============================================================
+\documentclass[9pt,letterpaper]{extarticle}
+\usepackage[top=0.45in,bottom=0.45in,left=0.45in,right=0.45in]{geometry}
+\usepackage{multicol}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{parskip}
+
+% --- Typography -------------------------------------------------
+\setlength{\parskip}{1.5pt}
+\setlength{\parindent}{0pt}
+\setlist{nosep, leftmargin=*}
+
+\titleformat{\section}{\normalsize\bfseries\color{black!80}}{}{0em}{}[\vspace{-4pt}\rule{\linewidth}{0.4pt}\vspace{2pt}]
+\titlespacing{\section}{0pt}{5pt}{3pt}
+
+\newcommand{\sect}[1]{\section*{#1}}
+\newcommand{\T}[1]{\textbf{#1}}
+\renewcommand{\arraystretch}{1.15}
+
+% ================================================================
+\begin{document}
+\begin{center}
+  {\large\bfseries Geometric \& Topological Methods in Atmospheric Dynamics}\\[2pt]
+  {\small Reference Card \quad|\quad UAH Graduate Course}
+\end{center}
+\vspace{2pt}
+\begin{multicols}{3}
+
+% ----------------------------------------------------------------
+\sect{I. Differential Geometry}
+
+\T{Objects on a manifold $M$}
+\begin{itemize}
+  \item Manifold $M$: smooth space locally $\cong\mathbb{R}^n$
+  \item Tangent space $T_pM$: velocity vectors at $p$
+  \item Cotangent space $T_p^*M$: dual; holds 1-forms
+\end{itemize}
+
+\T{Graded algebra of $k$-forms $\Omega^k$}
+\begin{itemize}
+  \item $0$-form: scalar ($p$, $T$, $\theta$)
+  \item $1$-form $v$: velocity / circulation d.o.f.
+  \item $2$-form $\omega{=}dv$: vorticity / flux d.o.f.
+\end{itemize}
+
+\T{Key operators}\\[2pt]
+\begin{tabular}{@{}l@{\;}l@{\;}p{1.4in}@{}}
+\toprule
+Op. & Action & Property \\
+\midrule
+$d$ & $\Omega^k\!\to\!\Omega^{k+1}$ & $d^2{=}0$ \\
+$\wedge$ & $\Omega^p\!\times\!\Omega^q\!\to\!\Omega^{p+q}$ & $\alpha\wedge\beta{=}(-1)^{pq}\beta\wedge\alpha$ \\
+$\star$ & $\Omega^k\!\to\!\Omega^{n-k}$ & metric-dependent \\
+$\iota_u$ & $\Omega^k\!\to\!\Omega^{k-1}$ & contraction with $u$ \\
+$\mathcal{L}_u$ & $\Omega^k\!\to\!\Omega^k$ & flow transport \\
+\bottomrule
+\end{tabular}
+
+\T{Cartan's magic formula}
+\[\mathcal{L}_u\alpha = d(\iota_u\alpha) + \iota_u(d\alpha)\]
+
+\T{Stokes' theorem}
+\[\int_{\partial M}\omega = \int_M d\omega\]
+
+% ----------------------------------------------------------------
+\sect{II. Geometric Fluid Dynamics}
+
+\T{Vector-invariant incompressible Euler}
+\[\partial_t v + \iota_u\omega + dB = 0,\quad \omega = dv\]
+\[B = \tfrac{1}{2}|u|^2 + p + \Phi, \quad d(\star v) = 0\]
+\[\partial_t\omega + \mathcal{L}_u\omega = 0\]
+
+\T{Conserved invariants}\\[2pt]
+\begin{tabular}{@{}ll@{}}
+\toprule
+Invariant & Expression \\
+\midrule
+Energy & $E = \tfrac{1}{2}\int_\Omega v\wedge\star v$ \\
+Kelvin circ. & $\tfrac{d}{dt}\oint_{c(t)}v = 0$ \\
+Helicity (3D) & $H = \int_\Omega v\wedge dv$ \\
+Pot.\ vorticity & $q = (\omega+f)/\rho$ \\
+Enstrophy (2D) & $Z = \tfrac{1}{2}\int\omega^2\,dA$ \\
+\bottomrule
+\end{tabular}
+
+% ----------------------------------------------------------------
+\sect{III. Discrete Exterior Calculus}
+
+\T{Philosophy:} separate topology (combinatorial) from metric (geometric).
+
+\begin{itemize}
+  \item \T{Primal complex}: Delaunay triangles; $k$-cochains
+  \item \T{Dual complex}: Voronoi polygons; $(n{-}k)$-cochains
+  \item \T{Coboundary op.\ $D$}: discrete $d$; $D^2=0$ exactly
+  \item \T{Discrete Hodge $M_k$}: diagonal mass matrix; sole error source
+  \item \T{Whitney forms}: cochain-to-form interpolation
+\end{itemize}
+
+\T{Discrete energy identity}
+\[\langle v,\,I_v(\tilde{D}_1 v)\rangle_1 = 0\]
+Unconditional stability; no artificial dissipation.
+
+\T{Applications:} MPAS, ICON, mimetic FD, compatible FE.
+
+% ----------------------------------------------------------------
+\sect{IV. Dynamical Systems \& Bifurcations}
+
+\T{Local bifurcations}\\[2pt]
+\begin{tabular}{@{}lll@{}}
+\toprule
+Type & Normal form & Example \\
+\midrule
+Saddle-node & $\dot x=\mu-x^2$ & tipping pt.\ \\
+Pitchfork & $\dot x=\mu x-x^3$ & sym.\ breaking \\
+Transcritical & $\dot x=\mu x-x^2$ & threshold \\
+Hopf & $\dot r=\mu r-r^3$ & oscillation \\
+\bottomrule
+\end{tabular}
+
+\T{Global:} homoclinic, heteroclinic, period-doubling, torus, crisis.
+
+\T{Catastrophe theory (Thom)}\\[2pt]
+\begin{tabular}{@{}lll@{}}
+\toprule
+Catastrophe & Codim. & Relevance \\
+\midrule
+Fold & 1 & sudden onset \\
+Cusp & 2 & BL hysteresis \\
+Swallowtail & 3 & multi-param.\ tip \\
+Butterfly & 4 & --- \\
+\bottomrule
+\end{tabular}
+
+% ----------------------------------------------------------------
+\sect{V. Lagrangian Coherent Structures}
+
+\T{Flow map:} $F_{t_0}^t(x_0)$ — trajectory from $x_0$ at $t_0$.
+
+\T{Cauchy--Green tensor}
+\[C = \bigl(DF_{t_0}^t\bigr)^\top DF_{t_0}^t\]
+
+\T{FTLE}
+\[\sigma_{t_0}^t(x_0) = \frac{1}{|t-t_0|}\ln\sqrt{\lambda_{\max}(C)}\]
+
+\T{LCS types}\\[2pt]
+\begin{tabular}{@{}lll@{}}
+\toprule
+Type & FTLE & Geometry \\
+\midrule
+Repelling & fwd ridges & unstable mflds \\
+Attracting & bwd ridges & stable mflds \\
+Elliptic & closed lines & vortex cores \\
+Parabolic & jet surfaces & shear barriers \\
+\bottomrule
+\end{tabular}
+
+\T{Applications:} atmospheric rivers, hurricane eyewalls, jet streams, polar vortex edge, aerosol transport.
+
+% ----------------------------------------------------------------
+\sect{VI. Topological Data Analysis}
+
+\T{Pipeline}
+\[\text{cloud}\;\xrightarrow{\text{VR}}\;\text{filtration}\;\xrightarrow{H_k}\;\text{barcodes}\]
+
+\begin{itemize}
+  \item $\beta_0$: connected components
+  \item $\beta_1$: loops / vortex rings
+  \item $\beta_2$: enclosed voids
+  \item Persistence diagram: birth--death pairs
+  \item Barcode: feature lifetime
+  \item Mapper: topological graph
+\end{itemize}
+
+\T{Applications:} convective organization, cloud morphology, turbulence intermittency, regime detection, radar analysis.
+
+% ----------------------------------------------------------------
+\sect{VII. Atmospheric Boundary Layer Geometry}
+
+\begin{tabular}{@{}p{1.1in}p{1.1in}@{}}
+\toprule
+Concept & Geometric meaning \\
+\midrule
+M-O similarity & solution manifold \\
+Stability regimes & folded equil.\ surface \\
+Cusp bifurcation & BL hysteresis \\
+$Ri$ number & stability manifold coord. \\
+Slow manifold & near-critical dynamics \\
+Wave--turb.\ interact. & resonant tori \\
+\bottomrule
+\end{tabular}
+
+\T{Key dimensionless numbers}
+\[Ri = \frac{(g/\theta_v)\,\partial_z\theta_v}{(\partial_z u)^2+(\partial_z v)^2}\]
+\[Ro = \frac{U}{fL} \qquad Fr = \frac{U}{NH}\]
+
+\end{multicols}
+\end{document}
