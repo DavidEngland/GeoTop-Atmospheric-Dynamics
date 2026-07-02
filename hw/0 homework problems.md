@@ -37,30 +37,61 @@ In **Topological Data Analysis**, we use Betti numbers ($\beta_n$) to classify t
 ### **Unit 3: Dynamics, Bifurcations, and GSPT**
 
 **Problem 6: The SBL as a Fast-Slow System**
-Treat the **Stable Boundary Layer (SBL)** as a fast-slow system where turbulence ($u$) is the fast variable and radiative cooling ($v$) is the slow variable.
-*   Define the **critical manifold ($S_0$)** for the system $\dot{u} = f(u, v, 0)$.
-*   Sketch a **folded equilibrium manifold** and identify the **fold point** (saddle-node bifurcation) where the SBL collapses into the **Very Stable Boundary Layer (VSBL)**.
-*   Using the concept of **hysteresis**, explain why a boundary layer that collapses at a geostrophic wind of 3 m/s might require 6 m/s to "switch" back to a turbulent state.
+> **Notation Note:** In standard dynamical systems, $u$ and $v$ often denote fast and slow variables. To avoid confusion with zonal ($u$) and meridional ($v$) wind components, we use **Turbulent Kinetic Energy (TKE)** as the fast variable $e$ and **background thermal stratification/cooling** as the slow variable $\theta$.
+
+Treat the **Stable Boundary Layer (SBL)** as a fast-slow system governed by:
+
+$$
+\dot{e} = f(e, \theta, \epsilon), \qquad
+\dot{\theta} = \epsilon g(e, \theta, \epsilon),
+$$
+
+where $0 < \epsilon \ll 1$ is the timescale-separation parameter between rapid turbulent adjustment and slow radiative cooling.
+
+*   **A) Critical Manifold:** Define the **critical manifold ($S_0$)** by setting $\epsilon = 0$. What physical state of the boundary layer does $S_0$ represent?
+*   **B) Phase-Space Sketch:** Sketch the **folded equilibrium manifold** in the $(e,\theta)$ plane and identify the **fold point** (saddle-node bifurcation) where the weakly stable SBL collapses into the **Very Stable Boundary Layer (VSBL)**.
+*   **C) Hysteresis and Regime Transitions:** Using **hysteresis**, explain why collapse at geostrophic wind speed $U_g = 3\,\mathrm{m\,s^{-1}}$ can require ramp-up to $U_g = 6\,\mathrm{m\,s^{-1}}$ for relaminarized flow to switch back to a fully turbulent state.
+
+> **Hint:** Interpret $S_0$ as the set where TKE production and dissipation are balanced. In your sketch, use $e$ on the vertical axis and $\theta$ (or a stability proxy such as $Ri$) on the horizontal axis. Fast trajectories move approximately vertically toward $S_0$.
 
 **Problem 7: Latitude as a Bifurcation Parameter**
-Atmospheric dynamics change structurally with **latitude ($\phi$)**.
-*   Contrast the topology of the boundary layer manifold in the **Mid-Latitudes** (folded/bistable) versus the **Deep Tropics** (flat/convective equilibrium).
-*   Explain why **Geometric Singular Perturbation Theory (GSPT)** is specifically required to resolve the "non-hyperbolic" folds found in **Polar Regions**.
+Atmospheric boundary-layer dynamics change structurally with **latitude ($\phi$)**, so latitude can be treated as a global bifurcation parameter.
 
-**Problem 8: Inner and Outer Solutions (Matching)**
-Using the example of **enzyme kinetics** (Michaelis-Menten) as a proxy for TKE decay:
-*   Calculate the **outer solution** where the fast variable has reached a steady state on the slow manifold.
-*   Calculate the **inner solution** for the "initial layer" (the rapid collapse of turbulence at sunset).
-*   Demonstrate the **matching principle** to show these two solutions overlap to form a uniformly valid approximation of the night-time transition.
+*   **A) Manifold Topology:** Contrast the topology of the boundary-layer manifold in the **Mid-Latitudes** (folded/bistable regime) versus the **Deep Tropics** (flatter, continuously convective equilibrium).
+*   **B) Breakdown of Standard Fenichel Reduction:** Explain why **GSPT** plus local normal-form analysis is required in **Polar Regions**, where trajectories pass through **non-hyperbolic** fold points.
+
+> **Hint:** Fenichel theory assumes normal hyperbolicity. What happens to the fast-subsystem eigenvalue at a fold where SBL collapse occurs, and why does standard regular perturbation fail there?
+
+**Problem 8: Inner and Outer Solutions (Matched Asymptotics for the Evening Transition)**
+Use a simplified **TKE decay** proxy for evening transition dynamics:
+
+$$
+\epsilon \frac{de}{dt} = -(e-\bar e_0)^2 + (\theta_0-\beta t),
+$$
+
+where $\epsilon$ is the small turbulent-adjustment timescale and $\beta t$ is slow linear radiative cooling.
+
+*   **A) Outer Solution:** Compute the **outer solution** $e_{\text{outer}}(t)$ on the slow timescale, assuming the fast variable has relaxed onto the attracting slow manifold.
+*   **B) Inner Solution:** Compute the **inner solution** $e_{\text{inner}}(\tau)$ in the initial layer near sunset using fast time $\tau=t/\epsilon$.
+*   **C) Asymptotic Matching:** Demonstrate Prandtl matching,
+
+$$
+\lim_{t\to 0^+} e_{\text{outer}}(t) = \lim_{\tau\to\infty} e_{\text{inner}}(\tau),
+$$
+
+and construct a **composite uniformly valid approximation** for the full evening transition.
+
+> **Hint:** The inner solution captures the immediate post-sunset TKE crash; the outer solution captures the slower nocturnal evolution. Matching enforces smooth overlap between the two asymptotic regimes.
 
 ---
 
 ### **Unit 4: Synthesis & Applied Research**
 
 **Problem 9: Atmospheric Transport Barriers**
-Compare and contrast **Fenichel fibers** and **Lagrangian Coherent Structures (LCS)** [model history].
-*   Explain how the union of **unstable Fenichel fibers** forms a "repelling LCS" (a fence) that prevents mixing across the **polar vortex edge** [Model history, 371, 794].
-*   Discuss how identifying these objective barriers can prevent the **"over-smearing" of pollutant plumes** in air quality models like CMAQ.
+Compare and contrast **Fenichel fibers** and **Lagrangian Coherent Structures (LCS)**.
+*   Under what assumptions can unstable Fenichel fibers in a fast-slow reduced model correspond to a repelling LCS in physical space?
+*   For a polar-vortex potential-vorticity budget, identify which assumptions are plausible, which are questionable, and what additional diagnostics would be needed before claiming equivalence.
+*   Discuss how identifying objective barriers can prevent the **"over-smearing" of pollutant plumes** in air quality models like CMAQ.
 
 **Problem 10: The Blow-up Method**
 When a system reaches a **fold point**, it loses **normal hyperbolicity** and standard analysis fails.
