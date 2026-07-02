@@ -1,65 +1,78 @@
-## Homework Problem 1: The Lie Transport Track (Kinematics & Shearing)
+### Homework Problem 1: The Lie Transport Track (Kinematics & Shear Tilting)
 
-### **Problem Statement**
+#### **Problem Statement**
 
-In a neutral, steady-state atmospheric surface layer over a flat grassland ($z_{0,m} = 0.05 \text{ m}$), the horizontal wind field is given by:
+In a neutral, steady-state atmospheric surface layer over a flat, homogeneous surface, Monin-Obukhov Similarity Theory dictates that the vertical shear of the mean horizontal wind is inversely proportional to height:
 
+$$\frac{\partial u}{\partial z} = \frac{u_*}{\kappa z}$$
 
-$$\mathbf{u} = \left[ \frac{u_*}{\kappa} \ln\left(\frac{z}{z_{0,m}}\right) \right] \hat{\mathbf{i}} + 0\hat{\mathbf{j}} + 0\hat{\mathbf{k}}$$
+This yields the classic logarithmic wind profile:
 
-Suppose a microscopic, field-aligned sensor array is pointing straight up in the vertical direction to measure localized eddy structures. We model this sensor alignment as a geometric vector asset $\mathbf{A} = A_0 \hat{\mathbf{k}}$.
+$$\mathbf{u}(z) = \left[ \frac{u_*}{\kappa} \ln\left(\frac{z}{z_{0,m}}\right) \right] \hat{\mathbf{i}} + 0\hat{\mathbf{j}} + 0\hat{\mathbf{k}}$$
 
-1. Assuming the vector field $\mathbf{A}$ is steady-state ($\frac{\partial \mathbf{A}}{\partial t} = 0$), calculate its material derivative $\frac{D\mathbf{A}}{Dt}$ as it follows the background flow.
+Suppose a localized, vertically-oriented coherent structure (such as a buoyant thermal plume or a structural element of an eddy) is represented by a geometric vector asset $\mathbf{A} = A_0 \hat{\mathbf{k}}$.
+
+1. Assuming the vector field $\mathbf{A}$ is locally steady ($\frac{\partial \mathbf{A}}{\partial t} = 0$), calculate its material derivative $\frac{D\mathbf{A}}{Dt}$ as it follows the background flow.
 2. Calculate the Lie derivative $\mathcal{L}_{\mathbf{u}}\mathbf{A}$ of this vertical asset along the log-stratified velocity field.
-3. **Physical Interpretation:** Is the geometric structure of this vertical asset preserved by the boundary layer flow? Based on your answer for $\mathcal{L}_{\mathbf{u}}\mathbf{A}$, explain how the strong surface shear physically deforms a vertical structure as height $z$ approaches the ground.
+3. **Physical Interpretation:** Is the geometric structure of this vertical asset preserved by the boundary layer flow? Based on your answer for $\mathcal{L}_{\mathbf{u}}\mathbf{A}$, explain how this mechanism physically generates streamwise streaks or roll vortices, and describe what happens to the intensity of this deformation as an air parcel approaches the rough surface ($z \to 0$).
 
-### **Solution Key for Grading**
+#### **Solution Key & Grading Rubric**
 
-1. **Material Derivative:**
+1. **Material Derivative Evaluation:**
+
 $$\frac{D\mathbf{A}}{Dt} = \frac{\partial \mathbf{A}}{\partial t} + (\mathbf{u} \cdot \nabla)\mathbf{A} = 0 + \left[ \frac{u_*}{\kappa}\ln\left(\frac{z}{z_{0,m}}\right)\frac{\partial}{\partial x} \right](A_0 \hat{\mathbf{k}}) = 0$$
 
+*Students must show that because the vector field components do not vary spatially along the horizontal streamline, the material derivative is zero.*
+2. **Lie Derivative Computation:**
+Using the relationship $\mathcal{L}_{\mathbf{u}}\mathbf{A} = \frac{D\mathbf{A}}{Dt} - \frac{\partial \mathbf{A}}{\partial t} - (\mathbf{A} \cdot \nabla)\mathbf{u}$:
 
+$$\mathcal{L}_{\mathbf{u}}\mathbf{A} = 0 - 0 - \left(A_0 \frac{\partial}{\partial z}\right)\mathbf{u} = -A_0 \frac{\partial}{\partial z} \left[ \frac{u_*}{\kappa} \ln\left(\frac{z}{z_{0,m}}\right) \hat{\mathbf{i}} \right] = -\left( \frac{A_0 u_*}{\kappa z} \right) \hat{\mathbf{i}}$$
 
-*(The physical components do not change along the flat, purely horizontal streamline).*
-2. **Lie Derivative:**
-
-$$\mathcal{L}_{\mathbf{u}}\mathbf{A} = \frac{D\mathbf{A}}{Dt} - \frac{\partial \mathbf{A}}{\partial t} - (\mathbf{A} \cdot \nabla)\mathbf{u} = 0 - 0 - \left(A_0 \frac{\partial}{\partial z}\right)\mathbf{u}$$
-
-
-$$\mathcal{L}_{\mathbf{u}}\mathbf{A} = -A_0 \frac{\partial}{\partial z} \left[ \frac{u_*}{\kappa} \ln\left(\frac{z}{z_{0,m}}\right) \hat{\mathbf{i}} \right] = -\left( \frac{A_0 u_*}{\kappa z} \right) \hat{\mathbf{i}}$$
-
-
-3. **Interpretation:** Because $\mathcal{L}_{\mathbf{u}}\mathbf{A} \neq 0$, the vertical geometry is *not* invariant under the flow. The negative sign in the $\hat{\mathbf{i}}$ direction means the top of the vector is being dragged faster than the bottom. Because the gradient scales as $1/z$, this tilting and shearing effect becomes drastically more violent the closer the structure gets to the rough surface wall ($z \to 0$).
+1. **Physical Interpretation:**
+Because $\mathcal{L}_{\mathbf{u}}\mathbf{A} \neq 0$, the vertical geometry is *not* invariant under the flow. The resulting vector points in the negative streamwise direction ($-\hat{\mathbf{i}}$), demonstrating that the strong vertical wind shear is actively tilting the vertical asset forward. This is the exact kinematic mechanism responsible for generating streamwise streaks and roll vortices out of vertical perturbations. Furthermore, because the gradient scales as $1/z$, this tilting deformation becomes singular and increasingly violent near the wall ($z \to 0$).
 
 ---
 
-## Homework Problem 2: The Fast-Slow Track (GSPT & Turbulence Relaxation)
+### Homework Problem 2: The Fast-Slow Track (GSPT with Explicit Mixing-Length Closure)
 
-### **Problem Statement**
+#### **Problem Statement**
 
-Consider a highly idealized, vertically local model for the evolution of the wind profile gradient $X = \frac{\partial u}{\partial z}$ in the surface layer. The fast timescale dynamics represent turbulent eddy mixing trying to force the atmosphere back to a neutral log-profile equilibrium:
+Let us construct a explicit fast-slow system for the local evolution of the vertical wind shear gradient, $X = \frac{\partial u}{\partial z}$, in the surface layer.
 
+The fast timescale dynamics represent the turbulent eddy momentum flux relaxation. We invoke a mixing-length closure where the turbulent eddy viscosity scales with height and shear, $\nu_t = (\kappa z)^2 X$. The deviation of the local momentum transport from its steady equilibrium value balances against a rapid turbulent adjustment timescale $\varepsilon \ll 1$ (seconds):
 
-$$\varepsilon \frac{dX}{dt} = -\left( X - \frac{u_*}{\kappa z} \right)$$
+$$\varepsilon \frac{dX}{dt} = -\left[ (\kappa z)^2 X^2 - u_*^2 \right]$$
 
 Meanwhile, the macroscale background atmosphere experiences a slow diurnal cycle, causing the friction velocity $u_*$ to fluctuate slowly over a period of hours based on a large-scale synoptic pressure gradient:
 
-
 $$\frac{du_*}{dt} = -\omega \sin(\omega t)$$
 
+where $\omega \sim 10^{-4} \text{ s}^{-1}$ represents the slow synoptic forcing frequency.
 
-where $\varepsilon \ll 1$ represents the rapid turbulent relaxation timescale (seconds) relative to the slow synoptic variations (hours).
+1. Identify the **fast variable**, the **slow variable**, and write down the algebraic equation defining the **critical manifold** ($M_0$) for this system by setting $\varepsilon = 0$ (assume $X > 0, u_* > 0$). Show how the mixing-length assumption explicitly yields the Monin-Obukhov log-profile gradient.
+2. Evaluate the **normal hyperbolicity** of the critical manifold $M_0$ by computing the Jacobian of the fast subsystem along the manifold. Is the manifold attracting or repelling?
+3. If a sudden morning front causes $u_*$ to jump instantly, explain how the fast-slow geometry ensures the boundary layer wind profile rapidly relaxes back to a classic logarithmic shape.
 
-1. Identify the **fast variable**, the **slow variable**, and write down the algebraic equation defining the **critical manifold** ($M_0$) for this system by setting $\varepsilon = 0$.
-2. State the physical significance of this critical manifold in the context of micrometeorology.
-3. If a sudden morning front causes $u_*$ to jump instantly, explain qualitatively how the fast-slow geometry ensures the wind profile relaxes back to a classic logarithmic shape.
+#### **Solution Key & Grading Rubric**
 
-### **Solution Key for Grading**
+1. **Critical Manifold & Closure Integration:**
+The fast variable is the wind shear gradient $X$; the slow variable is the friction velocity $u_*$. Setting $\varepsilon = 0$ yields the algebraic constraint:
 
-1. **Variables & Manifold:** The fast variable is the wind shear gradient $X$; the slow variable is the friction velocity $u_*$. Setting $\varepsilon = 0$ yields the critical manifold equation:
+$$(\kappa z)^2 X^2 - u_*^2 = 0 \implies (\kappa z)X = u_* \implies X = \frac{u_*}{\kappa z}$$
 
-$$X = \frac{u_*}{\kappa z}$$
+Replacing $X$ with $\frac{\partial u}{\partial z}$ yields $\frac{\partial u}{\partial z} = \frac{u_*}{\kappa z}$. Integrating this equation with respect to $z$ yields the classic neutral logarithmic wind profile $u(z) = \frac{u_*}{\kappa}\ln(z/z_{0,m})$. The mixing length closure $\ell = \kappa z$ is the load-bearing spatial component that defines the geometry of this manifold.
+2. **Normal Hyperbolicity Check:**
+Define the fast function $f(X, u_*) = -(\kappa z)^2 X^2 + u_*^2$. The stability is determined by evaluating the partial derivative with respect to the fast variable, $\frac{\partial f}{\partial X}$, along the critical manifold $M_0$:
 
+$$\frac{\partial f}{\partial X} = -2(\kappa z)^2 X$$
 
-2. **Micrometeorological Significance:** The critical manifold $M_0$ is precisely the **neutral logarithmic wind profile profile constraint** from Monin-Obukhov Similarity Theory. It implies that on macroscopic timescales, the boundary layer wind profile is "slaved" to the instantaneous value of the surface friction velocity.
-3. **Qualitative Behavior:** Because $\frac{\partial}{\partial X}\left[-(X - \frac{u_*}{\kappa z})\right] = -1 < 0$, the manifold is **normally hyperbolic and strictly attracting**. If $u_*$ shifts, the fast turbulent eddies (acting on the fast timescale) will instantly force the vertical wind gradient $X$ to collapse back onto the attracting manifold, restoring the valid $\ln(z)$ profile almost immediately.
+Substituting $X = \frac{u_*}{\kappa z}$ into the derivative yields:
+
+$$\left. \frac{\partial f}{\partial X} \right|_{M_0} = -2(\kappa z)^2 \left( \frac{u_*}{\kappa z} \right) = -2\kappa z u_*$$
+
+Since $\kappa, z, u_* > 0$, the eigenvalue is strictly negative: $-2\kappa z u_* < 0$. Therefore, the critical manifold $M_0$ is **normally hyperbolic and strictly attracting**.
+3. **Qualitative Dynamical Behavior:**
+Because the manifold is strongly attracting, any sudden synoptic disruption to $u_*$ instantly knocks the system off $M_0$ into the fast blue sky of the state space. The fast turbulent eddies (acting on the $O(\varepsilon)$ timescale) will rapidly force the vertical wind gradient $X$ to collapse vertically back down onto the attracting manifold $M_0$. Once trapped back on the manifold, the profile instantly satisfies the logarithmic configuration again, tracking any subsequent slow adjustments to $u_*$ along the slow timescale.
+
+---
+
