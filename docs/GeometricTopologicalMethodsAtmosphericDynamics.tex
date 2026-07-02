@@ -59,9 +59,9 @@ Wedge product $\wedge$
 $\Omega^p(M)\times\Omega^q(M)\rightarrow\Omega^{p+q}(M)$
 &
 Graded commutative:
-$begin:math:display$
-\\alpha\\wedge\\beta\=\(\-1\)\^\{pq\}\\beta\\wedge\\alpha\.
-$end:math:display$
+\[
+\alpha\wedge\beta=(-1)^{pq}\beta\wedge\alpha.
+\]
 \\
 
 Hodge star $\star$
@@ -85,78 +85,78 @@ Measures transport/deformation along the flow.
 
 \paragraph{Cartan's Magic Formula}
 
-$begin:math:display$
-\\boxed\{
-\\mathcal\{L\}\_u\\alpha
-\=
-d\(\\iota\_u\\alpha\)
-\+
-\\iota\_u\(d\\alpha\)
-\}
-$end:math:display$
+\[
+\boxed{
+\mathcal{L}_u\alpha
+=
+d(\iota_u\alpha)
++
+\iota_u(d\alpha)
+}
+\]
 
 \paragraph{Stokes' Theorem}
 
-$begin:math:display$
-\\boxed\{
-\\int\_\{\\partial M\}\\omega
-\=
-\\int\_M d\\omega
-\}
-$end:math:display$
+\[
+\boxed{
+\int_{\partial M}\omega
+=
+\int_M d\omega
+}
+\]
 
 %===========================================================
 \section*{II. Geometric Fluid Dynamics (Incompressible Euler)}
 
 \subsection*{Vector-Invariant Momentum Equation}
 
-$begin:math:display$
-\\boxed\{
-\\partial\_t v
-\+
-\\iota\_u\\omega
-\+
+\[
+\boxed{
+\partial_t v
++
+\iota_u\omega
++
 dB
-\=
+=
 0\,
-\\qquad
-\\omega\=dv
-\}
-$end:math:display$
+\qquad
+\omega=dv
+}
+\]
 
 \paragraph{Bernoulli Function}
 
-$begin:math:display$
+\[
 B
-\=
-\\frac12\\iota\_u v
-\+
+=
+\frac12\iota_u v
++
 p
-\+
-\\Phi \.
-$end:math:display$
++
+\Phi .
+\]
 
 \noindent
-($begin:math:text$\\tfrac12\|u\|\^2$end:math:text$ is written coordinate-free as
-$begin:math:text$\\tfrac12\\iota\_u v$end:math:text$.)
+($\tfrac12|u|^2$ is written coordinate-free as
+$\tfrac12\iota_u v$.)
 
 \paragraph{Mass Conservation}
 
-$begin:math:display$
-d\(\\star v\)\=0\.
-$end:math:display$
+\[
+d(\star v)=0.
+\]
 
 \paragraph{Vorticity Transport}
 
-$begin:math:display$
-\\partial\_t\\omega\+\\mathcal L\_u\\omega\=0
-$end:math:display$
+\[
+\partial_t\omega+\mathcal L_u\omega=0
+\]
 
 or equivalently,
 
-$begin:math:display$
-\\partial\_t\\omega\+d\(\\iota\_u\\omega\)\=0\.
-$end:math:display$
+\[
+\partial_t\omega+d(\iota_u\omega)=0.
+\]
 
 \subsection*{Conserved Invariants}
 
@@ -166,53 +166,53 @@ Invariant & Expression & Physical Mechanism\\
 
 Energy
 &
-$begin:math:display$
-E\=\\frac12\\int\_M v\\wedge\\star v
-$end:math:display$
+\[
+E=\frac12\int_M v\wedge\star v
+\]
 &
 The Lamb vector satisfies
-$begin:math:display$
-\\iota\_u\(\\iota\_u\\omega\)\=0\,
-$end:math:display$
+\[
+\iota_u(\iota_u\omega)=0\,
+\]
 so it performs no work.\\
 
 Kelvin circulation
 &
-$begin:math:display$
-\\frac\{d\}\{dt\}\\oint\_\{c\(t\)\}v\=0
-$end:math:display$
+\[
+\frac{d}{dt}\oint_{c(t)}v=0
+\]
 &
 Direct consequence of Stokes' theorem and
-$begin:math:display$
-\\mathcal L\_u v\=\-dB\.
-$end:math:display$
+\[
+\mathcal L_u v=-dB.
+\]
 \\
 
 Helicity (3D)
 &
-$begin:math:display$
-H\=\\int\_M v\\wedge dv
-$end:math:display$
+\[
+H=\int_M v\wedge dv
+\]
 &
 Topological measure of vortex-line linking and knotting.\\
 
 Potential vorticity
 &
-$begin:math:display$
-q\=\\frac\{\\star\(dv\\wedge d\\theta\)\}\{\\rho\}
-$end:math:display$
+\[
+q=\frac{\star(dv\wedge d\theta)}{\rho}
+\]
 &
 Material invariant
-$begin:math:display$
-\\frac\{Dq\}\{Dt\}\=0
-$end:math:display$
+\[
+\frac{Dq}{Dt}=0
+\]
 for stratified adiabatic flow.\\
 
 Enstrophy (2D)
 &
-$begin:math:display$
-Z\=\\frac12\\int\_M\\omega\\wedge\\star\\omega
-$end:math:display$
+\[
+Z=\frac12\int_M\omega\wedge\star\omega
+\]
 &
 Conserved in two dimensions; drives the inverse energy cascade.
 \end{longtable}
@@ -240,9 +240,9 @@ $(n-k)$-cochains.\\
 Coboundary operator $D$ &
 Discrete analogue of $d$ defined entirely from incidence matrices.
 Exactly satisfies
-$begin:math:display$
-D\^2\=0\.
-$end:math:display$
+\[
+D^2=0.
+\]
 \\
 
 Discrete Hodge star $M_k$ &
@@ -255,11 +255,11 @@ Interpolate discrete cochains back to continuous differential forms.
 
 \paragraph{Discrete Energy Identity}
 
-$begin:math:display$
-\\boxed\{
-\\langle v\,\\iota\_u\(\\widetilde Dv\)\\rangle\=0
-\}
-$end:math:display$
+\[
+\boxed{
+\langle v\,\iota_u(\widetilde Dv)\rangle=0
+}
+\]
 
 Preserving skew-symmetry of the convective operator guarantees
 unconditional structural stability and eliminates artificial numerical
@@ -280,30 +280,30 @@ Type & Normal Form & Atmospheric Example\\
 \midrule
 
 Saddle-node &
-$begin:math:display$
-\\dot x\=\\mu\-x\^2
-$end:math:display$
+\[
+\dot x=\mu-x^2
+\]
 &
 Climate tipping points; fold catastrophes.\\
 
 Pitchfork &
-$begin:math:display$
-\\dot x\=\\mu x\-x\^3
-$end:math:display$
+\[
+\dot x=\mu x-x^3
+\]
 &
 Symmetry breaking (Hadley circulation, monsoon asymmetry).\\
 
 Transcritical &
-$begin:math:display$
-\\dot x\=\\mu x\-x\^2
-$end:math:display$
+\[
+\dot x=\mu x-x^2
+\]
 &
 Threshold crossing to instability.\\
 
 Hopf &
-$begin:math:display$
-\\dot z\=\(\\mu\+i\\omega\)z\-z\|z\|\^2
-$end:math:display$
+\[
+\dot z=(\mu+i\omega)z-z|z|^2
+\]
 &
 Onset of oscillatory atmospheric behavior.
 \end{longtable}
@@ -340,29 +340,29 @@ Structural stability boundaries in highly nonlinear models.
 
 \paragraph{Flow Map}
 
-$begin:math:display$
-F\_\{t\_0\}\^\{\\\,t\}\(x\_0\)\=x\(t\;t\_0\,x\_0\)\.
-$end:math:display$
+\[
+F_{t_0}^{\,t}(x_0)=x(t; t_0, x_0).
+\]
 
 \paragraph{Cauchy--Green Tensor}
 
-$begin:math:display$
-\\boxed\{
-C\=\(DF\_\{t\_0\}\^\{\\\,t\}\)\^\{T\}DF\_\{t\_0\}\^\{\\\,t\}
-\}
-$end:math:display$
+\[
+\boxed{
+C=(DF_{t_0}^{\,t})^{T}DF_{t_0}^{\,t}
+}
+\]
 
 \paragraph{Finite-Time Lyapunov Exponent}
 
-$begin:math:display$
-\\boxed\{
-\\sigma\_\{t\_0\}\^\{\\\,t\}\(x\_0\)
-\=
-\\frac\{1\}\{\|t\-t\_0\|\}
-\\ln
-\\sqrt\{\\lambda\_\{\\max\}\(C\(x\_0\)\)\}
-\}
-$end:math:display$
+\[
+\boxed{
+\sigma_{t_0}^{\,t}(x_0)
+=
+\frac{1}{|t-t_0|}
+\ln
+\sqrt{\lambda_{\max}(C(x_0))}
+}
+\]
 
 \subsection*{LCS Taxonomy}
 
@@ -397,17 +397,17 @@ polar vortex boundaries, and volcanic ash transport.
 
 \paragraph{Persistent Homology Pipeline}
 
-$begin:math:display$
-\\boxed\{
-\\text\{Point Cloud\/Field Data\}
-\\rightarrow
-\\text\{Filtered Complex\}
-\\rightarrow
-H\_k
-\\rightarrow
-\\text\{Persistence Diagrams\/Barcodes\}
-\}
-$end:math:display$
+\[
+\boxed{
+\text{Point Cloud\/Field Data}
+\rightarrow
+\text{Filtered Complex}
+\rightarrow
+H_k
+\rightarrow
+\text{Persistence Diagrams\/Barcodes}
+}
+\]
 
 \begin{longtable}{>{\bfseries}p{0.20\textwidth}p{0.30\textwidth}p{0.40\textwidth}}
 Object & Mathematical Meaning & Atmospheric Meaning\\
@@ -471,22 +471,22 @@ Reynolds stresses represented as geometric invariants tied to metric curvature.
 
 \subsection*{Key Dimensionless Ratios}
 
-$begin:math:display$
+\[
 Ri
-\=
-\\frac\{
-\\frac\{g\}\{\\theta\_v\}
-\\frac\{\\partial\\theta\_v\}\{\\partial z\}
-\}\{
-\\left\(\\frac\{\\partial u\}\{\\partial z\}\\right\)\^2
-\+
-\\left\(\\frac\{\\partial v\}\{\\partial z\}\\right\)\^2
-\}\,
-\\qquad
-Ro\=\\frac\{U\}\{fL\}\,
-\\qquad
-Fr\=\\frac\{U\}\{NH\}\.
-$end:math:display$
+=
+\frac{
+\frac{g}{\theta_v}
+\frac{\partial\theta_v}{\partial z}
+}{
+\left(\frac{\partial u}{\partial z}\right)^2
++
+\left(\frac{\partial v}{\partial z}\right)^2
+}\,
+\qquad
+Ro=\frac{U}{fL}\,
+\qquad
+Fr=\frac{U}{NH}.
+\]
 
 %===========================================================
 \section*{Suggested Revision Notes for Class Delivery}
@@ -494,13 +494,13 @@ $end:math:display$
 \begin{enumerate}
 \item
 Emphasize that the geometric term
-$begin:math:display$
-\\iota\_u\\omega
-$end:math:display$
+\[
+\iota_u\omega
+\]
 is precisely the coordinate-free analogue of the classical vector identity
-$begin:math:display$
-u\\times\(\\nabla\\times u\)\.
-$end:math:display$
+\[
+u\times(\nabla\times u).
+\]
 This is often the conceptual bridge for engineering students.
 
 \item
