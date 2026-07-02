@@ -6,6 +6,8 @@ This folder contains homework problem sets and solution support for the UAH geom
 
 - [0 homework problems.md](0%20homework%20problems.md)
 - [3Solutions.md](3Solutions.md)
+- [Lie Derivative.md](Lie%20Derivative.md)
+- [Lie Derivative.tex](Lie%20Derivative.tex)
 
 ## Suggested Use
 

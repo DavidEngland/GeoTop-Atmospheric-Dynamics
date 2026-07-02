@@ -1,0 +1,250 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\setlist{nosep,leftmargin=*}
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0pt}
+
+\title{The Lie Derivative in Atmospheric Dynamics\\
+\large Notes, Worked Examples, and Homework}
+\author{UAH Course: Geometric and Topological Methods in Atmospheric Dynamics}
+\date{}
+
+\newcommand{\Lie}{\mathcal{L}}
+\newcommand{\DD}{\mathrm{D}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\ii}{\hat{\mathbf{i}}}
+\newcommand{\jj}{\hat{\mathbf{j}}}
+\newcommand{\kk}{\hat{\mathbf{k}}}
+
+\begin{document}
+\maketitle
+
+\section*{1. Why the Lie Derivative?}
+
+In atmospheric dynamics, the material derivative tracks how a quantity changes along a parcel path. For geometric objects (vectors, flux forms, vortex tubes, fronts), this is incomplete by itself because the flow deforms the ambient space by stretching, shearing, and rotating.
+
+The Lie derivative $\Lie_{\mathbf{u}}$ measures transport \emph{relative to the geometry of the flow map}. In short:
+\begin{itemize}
+  \item Material derivative: physical rate of change along trajectories.
+  \item Lie derivative: geometric rate of change under pushforward by the flow.
+\end{itemize}
+
+\section*{2. Core Definitions and Identities}
+
+\subsection*{2.1 Vector-field definition}
+
+For vector fields $\mathbf{u}$ (velocity) and $\mathbf{A}$,
+\[
+\Lie_{\mathbf{u}}\mathbf{A} \equiv [\mathbf{u},\mathbf{A}] = (\mathbf{u}\cdot\nabla)\mathbf{A} - (\mathbf{A}\cdot\nabla)\mathbf{u}.
+\]
+
+Using
+\[
+\frac{\DD \mathbf{A}}{\DD t} = \partial_t \mathbf{A} + (\mathbf{u}\cdot\nabla)\mathbf{A},
+\]
+we get
+\[
+\Lie_{\mathbf{u}}\mathbf{A}
+= \frac{\DD \mathbf{A}}{\DD t} - \partial_t\mathbf{A} - (\mathbf{A}\cdot\nabla)\mathbf{u},
+\]
+or equivalently
+\[
+\frac{\DD \mathbf{A}}{\DD t}
+= \partial_t\mathbf{A} + \Lie_{\mathbf{u}}\mathbf{A} + (\mathbf{A}\cdot\nabla)\mathbf{u}.
+\]
+
+The term $(\mathbf{A}\cdot\nabla)\mathbf{u}$ is the stretching/tilting contribution.
+
+\subsection*{2.2 Frozen-in criterion (important correction)}
+
+A common misconception is ``frozen-in'' means $\DD\mathbf{A}/\DD t=0$. That is generally false in deforming flows.
+
+\textbf{Correct criterion:}
+\[
+\mathbf{A}\text{ is Lie-dragged by }\mathbf{u}
+\iff \Lie_{\mathbf{u}}\mathbf{A}=0.
+\]
+
+If $\Lie_{\mathbf{u}}\mathbf{A}=0$, then $\mathbf{A}$ may still change in magnitude/direction due to deformation via $(\mathbf{A}\cdot\nabla)\mathbf{u}$.
+
+\subsection*{2.3 Differential-form form (Cartan identity)}
+
+For any differential form $\alpha$,
+\[
+\Lie_{\mathbf{u}}\alpha = d(\iota_{\mathbf{u}}\alpha) + \iota_{\mathbf{u}}(d\alpha).
+\]
+
+For transport equations, the geometric advection law is
+\[
+\partial_t \alpha + \Lie_{\mathbf{u}}\alpha = 0.
+\]
+
+This is the coordinate-free template behind many conservation laws.
+
+\section*{3. Atmospheric Geometric Transport}
+
+\subsection*{3.1 Mass as a 3-form}
+
+Define mass form
+\[
+\mu = \rho\,dx\wedge dy\wedge dz.
+\]
+Continuity is simply
+\[
+\partial_t \mu + \Lie_{\mathbf{u}}\mu = 0.
+\]
+
+\subsection*{3.2 Vorticity as a 2-form}
+
+Let velocity 1-form be $v=\mathbf{u}^{\flat}$ and vorticity 2-form
+\[
+\Omega = dv.
+\]
+In inviscid barotropic flow (with conservative body force),
+\[
+\partial_t\Omega + \Lie_{\mathbf{u}}\Omega = 0.
+\]
+
+\subsection*{3.3 Ertel PV as a ratio of transported forms}
+
+Let $\theta$ be potential temperature and define the 3-form identity
+\[
+Q\,\mu = d\theta \wedge \Omega.
+\]
+Under adiabatic, inviscid assumptions, both sides are Lie-transported, implying
+\[
+\frac{\DD Q}{\DD t}=0.
+\]
+This avoids long vector-identity derivations.
+
+\section*{4. Worked Example}
+
+\subsection*{Example: Sheared jet}
+
+Take
+\[
+\mathbf{u}(x,y,z)=(U_0+Sy)\,\ii,
+\qquad
+\mathbf{A}=A_0\,\jj,
+\]
+with $U_0,S,A_0$ constants, and assume locally steady $\partial_t\mathbf{A}=0$ and $\DD\mathbf{A}/\DD t=0$.
+
+From
+\[
+\Lie_{\mathbf{u}}\mathbf{A} = \frac{\DD\mathbf{A}}{\DD t}-\partial_t\mathbf{A}-(\mathbf{A}\cdot\nabla)\mathbf{u},
+\]
+we get
+\[
+\Lie_{\mathbf{u}}\mathbf{A}=-(\mathbf{A}\cdot\nabla)\mathbf{u}.
+\]
+Now
+\[
+(\mathbf{A}\cdot\nabla)=A_0\partial_y,
+\quad
+A_0\partial_y\big((U_0+Sy)\ii\big)=A_0S\,\ii.
+\]
+Hence
+\[
+\boxed{\Lie_{\mathbf{u}}\mathbf{A}=-A_0S\,\ii.}
+\]
+So the vector is not geometrically invariant; shear rotates/tilts the transported direction.
+
+\section*{5. Homework}
+
+\subsection*{Problem 1: Convective stretching}
+
+Consider an idealized updraft
+\[
+\mathbf{u}(x,y,z)=\sigma z\,\kk,
+\]
+with constant $\sigma>0$, and a vertical vortex filament
+\[
+\mathbf{B}=B\,\kk.
+\]
+Assume local steadiness $\partial_t\mathbf{B}=0$ and frozen-in condition $\Lie_{\mathbf{u}}\mathbf{B}=0$.
+
+\begin{enumerate}[label=\arabic*.]
+  \item Compute $\DD\mathbf{B}/\DD t$.
+  \item Solve for $B(t)$ along a parcel trajectory.
+  \item Interpret physically in terms of vortex amplification.
+\end{enumerate}
+
+\subsection*{Problem 2: Uniform zonal advection of a wave-like vector field}
+
+Let
+\[
+\mathbf{u}=U_0\,\ii,
+\qquad
+\mathbf{C}(x)=\cos(kx)\,\jj,
+\]
+with constants $U_0,k$.
+
+\begin{enumerate}[label=\arabic*.]
+  \item Compute $\Lie_{\mathbf{u}}\mathbf{C}=[\mathbf{u},\mathbf{C}]$ directly.
+  \item Determine whether $\mathbf{C}$ is Lie-dragged by the flow.
+\end{enumerate}
+
+\section*{6. Solutions (Instructor Key)}
+
+\subsection*{Solution 1}
+
+From
+\[
+\frac{\DD\mathbf{B}}{\DD t} = \partial_t\mathbf{B} + \Lie_{\mathbf{u}}\mathbf{B} + (\mathbf{B}\cdot\nabla)\mathbf{u},
+\]
+with first two terms zero,
+\[
+\frac{\DD\mathbf{B}}{\DD t}=(\mathbf{B}\cdot\nabla)\mathbf{u}.
+\]
+Since $(\mathbf{B}\cdot\nabla)=B\partial_z$ and $\mathbf{u}=\sigma z\,\kk$,
+\[
+\frac{\DD\mathbf{B}}{\DD t}=B\sigma\,\kk.
+\]
+Thus scalar amplitude satisfies
+\[
+\frac{\DD B}{\DD t}=\sigma B
+\quad\Rightarrow\quad
+B(t)=B(0)e^{\sigma t}.
+\]
+Interpretation: vertical stretching amplifies vertical vorticity/tube intensity.
+
+\subsection*{Solution 2}
+
+Compute bracket terms:
+\[
+(\mathbf{u}\cdot\nabla)\mathbf{C}
+=U_0\partial_x\big(\cos(kx)\,\jj\big)
+=-kU_0\sin(kx)\,\jj,
+\]
+\[
+(\mathbf{C}\cdot\nabla)\mathbf{u}
+=\cos(kx)\partial_y(U_0\,\ii)=0.
+\]
+Hence
+\[
+\boxed{\Lie_{\mathbf{u}}\mathbf{C}=-kU_0\sin(kx)\,\jj\neq 0.}
+\]
+So $\mathbf{C}$ is not Lie-invariant under this flow.
+
+\section*{7. Quick Reference Box}
+
+\begin{tabular}{@{}ll@{}}
+\toprule
+Concept & Formula \\
+\midrule
+Vector Lie derivative & $\Lie_{\mathbf{u}}\mathbf{A}=(\mathbf{u}\cdot\nabla)\mathbf{A}-(\mathbf{A}\cdot\nabla)\mathbf{u}$ \\
+Material/Lie relation & $\DD\mathbf{A}/\DD t=\partial_t\mathbf{A}+\Lie_{\mathbf{u}}\mathbf{A}+(\mathbf{A}\cdot\nabla)\mathbf{u}$ \\
+Frozen-in criterion & $\Lie_{\mathbf{u}}\mathbf{A}=0$ \\
+Cartan identity & $\Lie_{\mathbf{u}}\alpha=d(\iota_{\mathbf{u}}\alpha)+\iota_{\mathbf{u}}d\alpha$ \\
+Advection of form & $\partial_t\alpha+\Lie_{\mathbf{u}}\alpha=0$ \\
+\bottomrule
+\end{tabular}
+
+\end{document}
