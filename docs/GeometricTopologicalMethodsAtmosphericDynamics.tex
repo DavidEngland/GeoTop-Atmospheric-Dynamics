@@ -1,0 +1,512 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{enumitem}
+
+\title{Geometric \& Topological Methods in Atmospheric Dynamics\\
+\large Reference Card -- UAH Graduate Course}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+%===========================================================
+\section*{I. Differential Geometry}
+
+\begin{longtable}{>{\bfseries}p{0.28\textwidth}p{0.67\textwidth}}
+Object & Definition\\
+\midrule
+Manifold $M$ &
+Smooth space locally homeomorphic ($\cong$) to $\mathbb{R}^n$.\\
+
+Tangent space $T_pM$ &
+Vector space of velocity vectors (derivations) at $p\in M$.\\
+
+Cotangent space $T_p^*M$ &
+Dual space to $T_pM$; contains $1$-forms (covectors).\\
+
+$k$-form &
+Smooth, totally antisymmetric multilinear functional acting on $k$ tangent vectors.
+\end{longtable}
+
+\subsection*{Graded Algebra of Forms ($\Omega^*(M)$)}
+
+\begin{itemize}[leftmargin=1.5cm]
+\item \textbf{0-form}: scalar field ($p$, $T$, $\theta$)
+\item \textbf{1-form}: $v$ --- velocity/circulation degrees of freedom
+\item \textbf{2-form}: $\omega=dv$ --- vorticity/flux degrees of freedom
+\end{itemize}
+
+\subsection*{Key Operators}
+
+\begin{longtable}{>{\bfseries}p{0.22\textwidth}p{0.28\textwidth}p{0.42\textwidth}}
+Operator & Action & Key Property\\
+\midrule
+
+Exterior derivative $d$
+&
+$\Omega^k(M)\rightarrow\Omega^{k+1}(M)$
+&
+$d^2=0$ (nilpotent; boundaries have no boundary).\\
+
+Wedge product $\wedge$
+&
+$\Omega^p(M)\times\Omega^q(M)\rightarrow\Omega^{p+q}(M)$
+&
+Graded commutative:
+$begin:math:display$
+\\alpha\\wedge\\beta\=\(\-1\)\^\{pq\}\\beta\\wedge\\alpha\.
+$end:math:display$
+\\
+
+Hodge star $\star$
+&
+$\Omega^k(M)\rightarrow\Omega^{n-k}(M)$
+&
+Isomorphism; explicitly metric-dependent.\\
+
+Interior product $\iota_u$
+&
+$\Omega^k(M)\rightarrow\Omega^{k-1}(M)$
+&
+Contraction with vector field $u$.\\
+
+Lie derivative $\mathcal{L}_u$
+&
+$\Omega^k(M)\rightarrow\Omega^k(M)$
+&
+Measures transport/deformation along the flow.
+\end{longtable}
+
+\paragraph{Cartan's Magic Formula}
+
+$begin:math:display$
+\\boxed\{
+\\mathcal\{L\}\_u\\alpha
+\=
+d\(\\iota\_u\\alpha\)
+\+
+\\iota\_u\(d\\alpha\)
+\}
+$end:math:display$
+
+\paragraph{Stokes' Theorem}
+
+$begin:math:display$
+\\boxed\{
+\\int\_\{\\partial M\}\\omega
+\=
+\\int\_M d\\omega
+\}
+$end:math:display$
+
+%===========================================================
+\section*{II. Geometric Fluid Dynamics (Incompressible Euler)}
+
+\subsection*{Vector-Invariant Momentum Equation}
+
+$begin:math:display$
+\\boxed\{
+\\partial\_t v
+\+
+\\iota\_u\\omega
+\+
+dB
+\=
+0\,
+\\qquad
+\\omega\=dv
+\}
+$end:math:display$
+
+\paragraph{Bernoulli Function}
+
+$begin:math:display$
+B
+\=
+\\frac12\\iota\_u v
+\+
+p
+\+
+\\Phi \.
+$end:math:display$
+
+\noindent
+($begin:math:text$\\tfrac12\|u\|\^2$end:math:text$ is written coordinate-free as
+$begin:math:text$\\tfrac12\\iota\_u v$end:math:text$.)
+
+\paragraph{Mass Conservation}
+
+$begin:math:display$
+d\(\\star v\)\=0\.
+$end:math:display$
+
+\paragraph{Vorticity Transport}
+
+$begin:math:display$
+\\partial\_t\\omega\+\\mathcal L\_u\\omega\=0
+$end:math:display$
+
+or equivalently,
+
+$begin:math:display$
+\\partial\_t\\omega\+d\(\\iota\_u\\omega\)\=0\.
+$end:math:display$
+
+\subsection*{Conserved Invariants}
+
+\begin{longtable}{>{\bfseries}p{0.22\textwidth}p{0.28\textwidth}p{0.42\textwidth}}
+Invariant & Expression & Physical Mechanism\\
+\midrule
+
+Energy
+&
+$begin:math:display$
+E\=\\frac12\\int\_M v\\wedge\\star v
+$end:math:display$
+&
+The Lamb vector satisfies
+$begin:math:display$
+\\iota\_u\(\\iota\_u\\omega\)\=0\,
+$end:math:display$
+so it performs no work.\\
+
+Kelvin circulation
+&
+$begin:math:display$
+\\frac\{d\}\{dt\}\\oint\_\{c\(t\)\}v\=0
+$end:math:display$
+&
+Direct consequence of Stokes' theorem and
+$begin:math:display$
+\\mathcal L\_u v\=\-dB\.
+$end:math:display$
+\\
+
+Helicity (3D)
+&
+$begin:math:display$
+H\=\\int\_M v\\wedge dv
+$end:math:display$
+&
+Topological measure of vortex-line linking and knotting.\\
+
+Potential vorticity
+&
+$begin:math:display$
+q\=\\frac\{\\star\(dv\\wedge d\\theta\)\}\{\\rho\}
+$end:math:display$
+&
+Material invariant
+$begin:math:display$
+\\frac\{Dq\}\{Dt\}\=0
+$end:math:display$
+for stratified adiabatic flow.\\
+
+Enstrophy (2D)
+&
+$begin:math:display$
+Z\=\\frac12\\int\_M\\omega\\wedge\\star\\omega
+$end:math:display$
+&
+Conserved in two dimensions; drives the inverse energy cascade.
+\end{longtable}
+
+%===========================================================
+\section*{III. Discrete Exterior Calculus (DEC)}
+
+\paragraph{Philosophy}
+
+Separate purely combinatorial topology (incidence matrices) from
+geometric measurements (lengths, areas, volumes).
+
+\begin{longtable}{>{\bfseries}p{0.28\textwidth}p{0.65\textwidth}}
+Element & Description\\
+\midrule
+
+Primal complex &
+Simplicial complex (e.g.\ Delaunay triangulation); carries primal
+$k$-cochains.\\
+
+Dual complex &
+Circumcentric dual (e.g.\ Voronoi tessellation); carries dual
+$(n-k)$-cochains.\\
+
+Coboundary operator $D$ &
+Discrete analogue of $d$ defined entirely from incidence matrices.
+Exactly satisfies
+$begin:math:display$
+D\^2\=0\.
+$end:math:display$
+\\
+
+Discrete Hodge star $M_k$ &
+Diagonal geometric mass matrix mapping primal to dual cochains;
+the only source of numerical error.\\
+
+Whitney forms &
+Interpolate discrete cochains back to continuous differential forms.
+\end{longtable}
+
+\paragraph{Discrete Energy Identity}
+
+$begin:math:display$
+\\boxed\{
+\\langle v\,\\iota\_u\(\\widetilde Dv\)\\rangle\=0
+\}
+$end:math:display$
+
+Preserving skew-symmetry of the convective operator guarantees
+unconditional structural stability and eliminates artificial numerical
+vorticity dissipation.
+
+\paragraph{Atmospheric Applications}
+
+MPAS, ICON, mimetic finite differences, and compatible geometric finite
+elements.
+
+%===========================================================
+\section*{IV. Dynamical Systems \& Bifurcation Theory}
+
+\subsection*{Local Bifurcations}
+
+\begin{longtable}{>{\bfseries}p{0.18\textwidth}p{0.28\textwidth}p{0.46\textwidth}}
+Type & Normal Form & Atmospheric Example\\
+\midrule
+
+Saddle-node &
+$begin:math:display$
+\\dot x\=\\mu\-x\^2
+$end:math:display$
+&
+Climate tipping points; fold catastrophes.\\
+
+Pitchfork &
+$begin:math:display$
+\\dot x\=\\mu x\-x\^3
+$end:math:display$
+&
+Symmetry breaking (Hadley circulation, monsoon asymmetry).\\
+
+Transcritical &
+$begin:math:display$
+\\dot x\=\\mu x\-x\^2
+$end:math:display$
+&
+Threshold crossing to instability.\\
+
+Hopf &
+$begin:math:display$
+\\dot z\=\(\\mu\+i\\omega\)z\-z\|z\|\^2
+$end:math:display$
+&
+Onset of oscillatory atmospheric behavior.
+\end{longtable}
+
+\paragraph{Global Bifurcations}
+
+Homoclinic and heteroclinic connections, period-doubling cascades,
+torus breakdown, and interior/boundary crises.
+
+\subsection*{Catastrophe Theory}
+
+\begin{longtable}{>{\bfseries}p{0.18\textwidth}p{0.12\textwidth}p{0.18\textwidth}p{0.40\textwidth}}
+Catastrophe & Codim. & Controls & Atmospheric Relevance\\
+\midrule
+
+Fold & 1 & $\mu$ &
+Abrupt climate or ecosystem transitions.\\
+
+Cusp & 2 &
+$(\alpha,\beta)$ &
+Bistability and hysteresis; stratospheric warmings and SBL transitions.\\
+
+Swallowtail & 3 &
+Three parameters &
+Ocean--atmosphere--ice interactions.\\
+
+Butterfly & 4 &
+Four parameters &
+Structural stability boundaries in highly nonlinear models.
+\end{longtable}
+
+%===========================================================
+\section*{V. Lagrangian Coherent Structures (LCS)}
+
+\paragraph{Flow Map}
+
+$begin:math:display$
+F\_\{t\_0\}\^\{\\\,t\}\(x\_0\)\=x\(t\;t\_0\,x\_0\)\.
+$end:math:display$
+
+\paragraph{Cauchy--Green Tensor}
+
+$begin:math:display$
+\\boxed\{
+C\=\(DF\_\{t\_0\}\^\{\\\,t\}\)\^\{T\}DF\_\{t\_0\}\^\{\\\,t\}
+\}
+$end:math:display$
+
+\paragraph{Finite-Time Lyapunov Exponent}
+
+$begin:math:display$
+\\boxed\{
+\\sigma\_\{t\_0\}\^\{\\\,t\}\(x\_0\)
+\=
+\\frac\{1\}\{\|t\-t\_0\|\}
+\\ln
+\\sqrt\{\\lambda\_\{\\max\}\(C\(x\_0\)\)\}
+\}
+$end:math:display$
+
+\subsection*{LCS Taxonomy}
+
+\begin{longtable}{>{\bfseries}p{0.20\textwidth}p{0.22\textwidth}p{0.48\textwidth}}
+Type & FTLE Field & Geometry\\
+\midrule
+
+Repelling &
+Forward-time ridges &
+Material lines maximizing normal stretching.\\
+
+Attracting &
+Backward-time ridges &
+Material lines maximizing normal compression.\\
+
+Elliptic &
+Closed nested loops &
+Coherent vortex cores.\\
+
+Parabolic &
+Shear trenches &
+Material transport barriers.
+\end{longtable}
+
+\paragraph{Atmospheric Applications}
+
+Atmospheric rivers, hurricane eyewalls, jet-stream filaments,
+polar vortex boundaries, and volcanic ash transport.
+
+%===========================================================
+\section*{VI. Topological Data Analysis (TDA)}
+
+\paragraph{Persistent Homology Pipeline}
+
+$begin:math:display$
+\\boxed\{
+\\text\{Point Cloud\/Field Data\}
+\\rightarrow
+\\text\{Filtered Complex\}
+\\rightarrow
+H\_k
+\\rightarrow
+\\text\{Persistence Diagrams\/Barcodes\}
+\}
+$end:math:display$
+
+\begin{longtable}{>{\bfseries}p{0.20\textwidth}p{0.30\textwidth}p{0.40\textwidth}}
+Object & Mathematical Meaning & Atmospheric Meaning\\
+\midrule
+
+$\beta_0$ &
+Connected components &
+Cloud patches or isolated structures.\\
+
+$\beta_1$ &
+Independent loops &
+Fluid circuits or vortex rings.\\
+
+$\beta_2$ &
+Three-dimensional voids &
+Enclosed bubbles or cavities.\\
+
+Persistence diagram &
+Birth/death point set &
+Evolution of geometric structures.\\
+
+Barcode &
+Intervals $[b,d]$ &
+Feature lifetime. Long bars indicate robust structures.\\
+
+Mapper &
+Topological graph &
+Reduced state-space representation.
+\end{longtable}
+
+\paragraph{Atmospheric Applications}
+
+Convective organization, cloud lifecycle analysis, turbulence
+intermittency, structural regime tracking, and radar morphology.
+
+%===========================================================
+\section*{VII. Atmospheric Boundary Layer Geometry}
+
+\begin{longtable}{>{\bfseries}p{0.30\textwidth}p{0.62\textwidth}}
+Concept & Geometric Interpretation\\
+\midrule
+
+Monin--Obukhov similarity &
+Invariant coordinate scaling defining a smooth similarity manifold.\\
+
+Stability regimes &
+Folded equilibrium surface with structural transitions.\\
+
+Cusp bifurcation &
+Explains hysteresis between SBL and VSBL.\\
+
+Richardson number ($Ri$) &
+Primary bifurcation parameter on the stability manifold.\\
+
+Slow manifold &
+Attracting invariant manifold after gravity-wave adjustment.\\
+
+Geometry-aware closures &
+Reynolds stresses represented as geometric invariants tied to metric curvature.
+\end{longtable}
+
+\subsection*{Key Dimensionless Ratios}
+
+$begin:math:display$
+Ri
+\=
+\\frac\{
+\\frac\{g\}\{\\theta\_v\}
+\\frac\{\\partial\\theta\_v\}\{\\partial z\}
+\}\{
+\\left\(\\frac\{\\partial u\}\{\\partial z\}\\right\)\^2
+\+
+\\left\(\\frac\{\\partial v\}\{\\partial z\}\\right\)\^2
+\}\,
+\\qquad
+Ro\=\\frac\{U\}\{fL\}\,
+\\qquad
+Fr\=\\frac\{U\}\{NH\}\.
+$end:math:display$
+
+%===========================================================
+\section*{Suggested Revision Notes for Class Delivery}
+
+\begin{enumerate}
+\item
+Emphasize that the geometric term
+$begin:math:display$
+\\iota\_u\\omega
+$end:math:display$
+is precisely the coordinate-free analogue of the classical vector identity
+$begin:math:display$
+u\\times\(\\nabla\\times u\)\.
+$end:math:display$
+This is often the conceptual bridge for engineering students.
+
+\item
+Remind students that the exterior derivative $d$ is completely metric-free,
+whereas the Hodge star $\star$ introduces the geometry of the physical
+space (flat Cartesian grids, spherical Earth, etc.).
+\end{enumerate}
+
+\end{document}

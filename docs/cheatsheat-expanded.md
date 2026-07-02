@@ -1,11 +1,3 @@
-This reference card is exceptionally well-structured and maps out a highly rigorous, modern graduate course. It does a beautiful job of showing how abstract mathematical frameworks (like the graded algebra of differential forms or persistent homology) solve very concrete, coordinate-dependent headaches in atmospheric and fluid dynamics.
-
-To make this reference card truly ready for your UAH graduate students, we need to correct a few minor typos, tweak some notations for mathematical precision, and add a few clarifying equations.
-
-Here is your revised, publication-ready reference card:
-
----
-
 # Geometric & Topological Methods in Atmospheric Dynamics
 
 ### Reference Card — UAH Graduate Course
@@ -105,9 +97,10 @@ $$\partial_t \omega + \mathcal{L}_u \omega = 0 \quad \implies \quad \partial_t \
 | **Saddle-node** | $\dot{x} = \mu - x^2$ | Classic climate tipping points / EBM fold catastrophes |
 | **Pitchfork** | $\dot{x} = \mu x - x^3$ | Symmetry breaking (e.g., Hadley cell transition to asymmetric monsoons) |
 | **Transcritical** | $\dot{x} = \mu x - x^2$ | Fundamental threshold crossing (e.g., transition to instability) |
-| **Hopf** | $\dot{z} = (\mu + i\omega)z - z | z |
+| **Hopf** | $\dot{z} = (\mu + i\omega)z - z\lvert z\rvert^2$ | Onset of oscillatory behavior (e.g., atmospheric wave patterns) |
 
-**Global Bifurcations:** Homoclinic/heteroclinic orbit attachments, period-doubling cascades to chaos, torus breakdowns, and interior/exterior crises.
+**Global Bifurcations:** Homoclinic/heteroclinic connections, period-doubling cascades to chaos, torus breakdown, and interior/boundary crises.
+
 
 **Catastrophe Theory (Thom's Classification):**
 
