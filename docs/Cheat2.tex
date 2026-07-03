@@ -1,0 +1,180 @@
+% ============================================================
+% Geometric & Topological Methods in Atmospheric Dynamics
+% Reference Card  —  UAH Graduate Course
+% Compile: pdflatex cheatsheet.tex
+% ============================================================
+\documentclass[9pt,letterpaper]{extarticle}
+\usepackage[landscape,top=0.45in,bottom=0.45in,left=0.45in,right=0.45in]{geometry}
+\usepackage{multicol}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{parskip}
+
+% --- Typography -------------------------------------------------
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{0pt}
+\setlength{\columnsep}{0.18in}
+\setlength{\abovedisplayskip}{2pt}
+\setlength{\belowdisplayskip}{2pt}
+\setlength{\abovedisplayshortskip}{2pt}
+\setlength{\belowdisplayshortskip}{2pt}
+\setlist{nosep, leftmargin=*}
+
+\titleformat{\section}{\normalsize\bfseries\color{black!80}}{}{0em}{}[\vspace{-4pt}\rule{\linewidth}{0.4pt}\vspace{2pt}]
+\titlespacing{\section}{0pt}{5pt}{3pt}
+
+\newcommand{\sect}[1]{\section*{#1}}
+\newcommand{\T}[1]{\textbf{#1}}
+\renewcommand{\arraystretch}{1.15}
+
+% ================================================================
+\begin{document}
+\begin{center}
+  {\large\bfseries Geometric \& Topological Methods in Atmospheric Dynamics}\\[2pt]
+  {\small Reference Card \quad|\quad UAH Graduate Course}
+\end{center}
+\vspace{1pt}
+\scriptsize
+\begin{multicols}{3}
+
+% ----------------------------------------------------------------
+\sect{I. Differential Geometry}
+\begin{itemize}
+  \item $\mathcal{M}$: physical spatial manifold (Earth/domain)
+  \item $T\mathcal{M}$: vector fields $u$; $T^*\mathcal{M}$: covectors/1-forms $v$
+  \item Forms: $\Omega^0$ scalars, $\Omega^1$ circulation, $\Omega^2$ area density
+\end{itemize}
+
+\T{Operator dictionary}\\[-1pt]
+\begin{tabular}{@{}ll@{}}
+\toprule
+Op & Meaning \\
+\midrule
+$d$ & exterior derivative \\
+$\star$ & Hodge star (metric dependent) \\
+$\wedge$ & wedge product \\
+$\iota_u$ & contraction with $u$ \\
+$\mathcal{L}_u$ & Lie derivative (advection) \\
+\bottomrule
+\end{tabular}
+
+\sect{II. Exterior Calculus}
+\begin{itemize}
+  \item Graded-commutative: $\alpha\wedge\beta = (-1)^{pq}\beta\wedge\alpha$, $\alpha\in\Omega^p$, $\beta\in\Omega^q$
+  \item General Hodge identity: $\star^2 = (-1)^{k(n-k)}$ on $\Omega^k(\mathcal{M})$
+  \item Cartan formula: $\mathcal{L}_u = d\iota_u + \iota_u d$
+  \item Stokes: $\int_{\partial M}\omega = \int_M d\omega$
+\end{itemize}
+
+\fbox{\begin{minipage}{0.96\columnwidth}
+\T{Core identities}\\[-1pt]
+$d^2=0$ \quad
+$\mathcal{L}_u=d\iota_u+\iota_ud$ \quad
+$\int_{\partial M}\omega=\int_M d\omega$\\[-1pt]
+$\delta=\star d\star$ \quad
+$\Delta=d\delta+\delta d$ \quad
+$\Pi d=d\Pi$
+\end{minipage}}
+
+% ----------------------------------------------------------------
+\sect{III. Geometric Fluid Dynamics}
+\begin{itemize}
+  \item Incompressible Euler (vector invariant): $\partial_t v + \iota_u(dv) + dB = 0$, $B=\tfrac12\iota_u v + p + \Phi$
+  \item Incompressibility: $d(\star v)=0$ (equiv. $\nabla\cdot u=0$)
+  \item Vorticity transport: $\partial_t(\star\zeta)+\mathcal{L}_u(\star\zeta)=0$
+  \item PV: $q=(\zeta+f)/h$, material conservation $(\partial_t+\mathcal{L}_u)q=0$
+\end{itemize}
+
+\T{Invariants}\\[-1pt]
+$E=\tfrac12\int_M v\wedge\star v$; \ $\dfrac{d}{dt}\oint_{c(t)}v=0$; \ $Z=\tfrac12\int_M\zeta^2\,dA$.
+
+% ----------------------------------------------------------------
+\sect{IV. DEC / FEEC}
+\begin{itemize}
+  \item Principle: topology exact, geometry approximate via $\star$
+  \item Primal/dual complexes: Delaunay/Voronoi pairing
+  \item Exact incidence algebra: discrete $d^2=0$
+  \item Compatible sequence: $V_0\xrightarrow{\nabla^\perp}V_1\xrightarrow{\nabla\cdot}V_2$ (scalar/flux/cell)
+  \item Commuting projection: $\Pi_{k+1}d=d\Pi_k$ (suppresses spurious modes)
+  \item Skew advection: $\langle v,\mathcal{L}_u v\rangle_1=0$ (energy consistency)
+\end{itemize}
+
+% ----------------------------------------------------------------
+\sect{V. Dynamical Systems \& GSPT}
+\T{Notation:} $M_0,M_\epsilon$ denote phase-space critical/slow manifolds (not spatial $\mathcal{M}$).
+
+\T{Local bifurcations:} saddle-node $\dot x=\mu-x^2$; pitchfork $\dot x=\mu x-x^3$; transcritical $\dot x=\mu x-x^2$; Hopf $\dot z=(\mu+i\omega)z-z|z|^2$.
+
+\T{Fast-slow template}\\[-1pt]
+Fast: $\dot x=f(x,y,\epsilon)$ \quad
+Slow: $\epsilon\dot y=g(x,y,\epsilon)$\\[-1pt]
+Critical manifold: $M_0=\{g(x,y,0)=0\}$ \quad
+Normal hyperbolicity: $\Re\lambda_{\text{fast}}\neq0$\\[-1pt]
+Fenichel: $M_0\to M_\epsilon$ \quad
+Loss NH: fold region $\to$ canards.
+
+\T{Catastrophes:} fold (codim-1), cusp (codim-2), swallowtail (codim-3).
+
+% ----------------------------------------------------------------
+\sect{VI. LCS \& TDA}
+\T{Space split:} LCS live on physical $\mathcal{M}$; $M_\epsilon$ lives in state space.
+
+\T{LCS chain:} flow map $F_{t_0}^t$; $C=(DF)^\top DF$; $\sigma=\dfrac{1}{|t-t_0|}\ln\sqrt{\lambda_{\max}(C)}$.
+
+\begin{itemize}
+  \item Repelling LCS: strongest forward stretching lines
+  \item Attracting LCS: strongest forward squeezing lines
+  \item Elliptic LCS: closed null-geodesics (objective coherent vortices)
+  \item Parabolic LCS: null-geodesic shear lines (jet cores)
+\end{itemize}
+
+\T{TDA pipeline:} cloud $\to$ filtration $\to H_k \to$ barcode/diagram.
+\begin{itemize}
+  \item $\beta_0$: components; $\beta_1$: loops; $\beta_2$: voids
+  \item Persistence point $(b_i,d_i)$; lifetime $d_i-b_i$ separates signal/noise
+\end{itemize}
+
+% ----------------------------------------------------------------
+\sect{VII. Atmospheric Applications}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Concept & Geometry \\
+\midrule
+MOST & 1D manifold \\
+SCM/regime branch & slow manifold \\
+$Ri_c$ & fold / loss of NH \\
+SBL transition & canard-type jump \\
+Turbulence collapse & NH breakdown \\
+Diurnal cycle & hysteresis loop \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+\T{Geometry $\leftrightarrow$ Physics}\\[-1pt]
+\begin{tabular}{@{}ll@{}}
+\toprule
+Geometry & Atmosphere \\
+\midrule
+$0$-form & scalar field \\
+$1$-form & circulation \\
+$2$-form & mass/area density \\
+$d$ & grad/curl/div structure \\
+$\star$ & metric map \\
+$\mathcal{L}_u$ & advection \\
+critical manifold & equilibrium states \\
+fold & tipping point \\
+persistence & coherent structure \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+\T{Dimensionless numbers:}
+$Ri=\dfrac{(g/\theta_v)\partial_z\theta_v}{(\partial_z u)^2+(\partial_z v)^2}$, $Ro=\dfrac{U}{fL}$, $Fr=\dfrac{U}{NH}$.
+
+\end{multicols}
+\end{document}
