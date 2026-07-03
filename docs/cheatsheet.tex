@@ -39,18 +39,18 @@
 % ----------------------------------------------------------------
 \sect{I. Differential Geometry}
 
-\T{Objects on a manifold $M$}
+\T{Objects on a physical manifold $\mathcal{M}$}
 \begin{itemize}
-  \item Manifold $M$: smooth space locally $\cong\mathbb{R}^n$
-  \item Tangent space $T_pM$: velocity vectors at $p$
-  \item Cotangent space $T_p^*M$: dual; holds 1-forms
+  \item Physical manifold $\mathcal{M}$: smooth spatial domain (e.g., sphere)
+  \item Tangent bundle $T\mathcal{M}$: holds velocity vector fields $u$
+  \item Cotangent bundle $T^*\mathcal{M}$: dual; holds 1-form covectors $v$
 \end{itemize}
 
-\T{Graded algebra of $k$-forms $\Omega^k$}
+\T{Graded algebra of $k$-forms $\Omega^k(\mathcal{M})$}
 \begin{itemize}
-  \item $0$-form: scalar ($p$, $T$, $\theta$)
-  \item $1$-form $v$: velocity / circulation d.o.f.
-  \item $2$-form $\omega{=}dv$: vorticity / flux d.o.f.
+  \item $0$-form $\zeta$: scalar field (relative vorticity, $p$, $\theta$)
+  \item $1$-form $v$: velocity circulation d.o.f.
+  \item $2$-form $h$: density/depth flux d.o.f.
 \end{itemize}
 
 \T{Key operators}\\[2pt]
@@ -115,6 +115,8 @@ Unconditional stability; no artificial dissipation.
 % ----------------------------------------------------------------
 \sect{IV. Dynamical Systems \& Bifurcations}
 
+\T{Notation:} $M_0,M_\epsilon$ denote phase-space critical/slow manifolds (not spatial $\mathcal{M}$).
+
 \T{Local bifurcations}\\[2pt]
 \begin{tabular}{@{}lll@{}}
 \toprule
@@ -143,6 +145,8 @@ Butterfly & 4 & --- \\
 
 % ----------------------------------------------------------------
 \sect{V. Lagrangian Coherent Structures}
+
+\T{Space split:} LCS live on physical $\mathcal{M}$, while $M_0,M_\epsilon$ live in abstract state space.
 
 \T{Flow map:} $F_{t_0}^t(x_0)$ — trajectory from $x_0$ at $t_0$.
 

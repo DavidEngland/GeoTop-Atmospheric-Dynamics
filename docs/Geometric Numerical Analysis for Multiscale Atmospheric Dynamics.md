@@ -94,7 +94,7 @@ Maintaining $\Pi d = d\Pi$ ensures that the discrete spaces form an exact sequen
 
 ### 1. The Rotating Shallow Water Equations (RSWE)
 
-To ground these geometric concepts in actual atmospheric modeling, we apply compatible finite elements to the RSWE, the standard testbed for dynamical cores:
+To ground these geometric concepts in actual atmospheric modeling, we apply compatible finite elements to the RSWE in a 2D formulation on the physical manifold $\mathcal{M}$:
 
 
 $$\partial _t u + (\zeta + f) u^\perp + \nabla \left( g h + \frac{1}{2}|u|^2 \right) = 0$$
@@ -103,12 +103,20 @@ $$\partial _t h + \nabla \cdot (hu) = 0$$
 
 Where $u$ is velocity, $h$ is fluid depth, $\zeta = \nabla \times u$ is the relative vorticity, and $f$ is the Coriolis parameter.
 
-### 2. Mimetic Balance and Discrete Potential Vorticity
+### 2. De Rham Mapping for Compatible Dynamical Cores
 
-Students will map these variables to the exact sequence: $h \in L^2$ (0-forms/cells), $u \in H(\text{div})$ (1-forms/faces), and vorticity $\zeta \in H(\text{curl})$ (2-forms/nodes).
+To ensure accurate structural transport, variables are mapped to the discrete exact sequence that mirrors the continuous 2D rotated de Rham complex:
 
-* **Spurious PV Mitigation:** Compatible discretizations do not *perfectly* eliminate potential vorticity errors in isolation, but they **substantially reduce spurious sources of potential vorticity by preserving discrete differential identities and mimetic balance relationships**.
-* By ensuring that the discrete curl of a gradient is exactly zero ($d^2=0$), the pressure gradient force cannot artificially generate vorticity. Geostrophic and hydrostatic balances are maintained cleanly at the discrete level, mimicking the true continuous atmospheric state.
+$$V_0 \xrightarrow{\nabla^\perp} V_1 \xrightarrow{\nabla\cdot} V_2$$
+
+* **Depth ($h \in V_2$):** Modeled using discontinuous $L^2$ elements (2-forms, cell-valued/integrated over areas), ensuring strict mass conservation through the divergence operator.
+* **Velocity ($u \in V_1$):** Modeled using $H(\text{div})$ elements (1-forms, edge/face-normal flux degrees of freedom).
+* **Vorticity ($\zeta \in V_0$):** A diagnostic scalar recovered by projecting the curl of the $H(\text{div})$ velocity field into continuous $H^1$ space (0-forms, node-valued).
+
+### 3. Mimetic Balance and Discrete Potential Vorticity
+
+* **Spurious PV Mitigation:** Compatible discretizations do not *perfectly* eliminate potential vorticity errors in isolation, but they **substantially reduce spurious PV sources by preserving discrete differential identities and mimetic balance relationships**.
+* Because the discrete operators inherit sequence identities exactly, the discrete curl of a gradient term is identically zero ($d^2=0$). This prevents pressure-gradient forcing from acting as a grid-aliased source of vorticity and preserves geostrophic/hydrostatic balances at the discrete level.
 
 ---
 
@@ -198,50 +206,3 @@ Because they exactly solve a "shadow Hamiltonian" near the true system, they str
 > **Prompt:** Contrast the energy behavior of a variational integrator with a classical explicit 4th-order Runge-Kutta (RK4) method when applied to a non-linear, inviscid atmospheric flow over a 100-year integration period.
 
 * *Expected Answer Key:* RK4 is not structure-preserving; it introduces sub-step numerical dissipation that manifests as a continuous, secular downward or upward drift in total energy, eventually ruining long-term climate statistics. A variational integrator preserves the symplectic form, meaning the system tracks an exact shadow Hamiltonian. The energy error stays strictly bounded within a small oscillation envelope ($\mathcal{O}(\Delta t^p)$) for all time, exhibiting zero long-term secular drift.
-
----
-
-You caught me dead to rights. That is a massive, fundamental error on my part, and I deeply appreciate the sharp correction.
-
-You are entirely correct: in 2D, the fluid depth $h$ is a density that must be integrated over areas, making it a **2-form ($L^2$ space, cell-valued)**. Vorticity $\zeta$, as the scalar curl of a 1-form velocity field in 2D, maps back to the 0-degree space—meaning it is recovered via projection onto the **0-form ($H^1$ space, node-valued)**. I completely inverted the ends of the sequence.
-
-Furthermore, your point about the Gung Ho dynamical core architecture (Cotter, Shipton, et al.) is exactly how the physics maps to the math. For the Rotating Shallow Water Equations (RSWE), when velocity $u$ is placed in $H(\text{div})$ to ensure exact mass conservation, the relevant 2D sequence relies on the rotated gradient (or perpendicular gradient $\nabla^\perp$) and divergence, bypassing $H(\text{curl})$ entirely as an evolutionary variable:
-
-$$H^1 \xrightarrow{\nabla^\perp} H(\text{div}) \xrightarrow{\nabla\cdot} L^2$$
-
-$$\text{Nodes (0-forms, } \zeta\text{)} \longrightarrow \text{Faces/Edges (1-forms, } u\text{)} \longrightarrow \text{Cells (2-forms, } h\text{)}$$
-
-Let’s issue an immediate correction to **Lecture 4** and tighten that section up so it aligns with actual state-of-the-art Gung Ho/Cotswold-style implementation frameworks.
-
----
-
-## Revised Lecture 4: Compatible Discretization of the Primitive Equations
-
-### 1. The Rotating Shallow Water Equations (RSWE)
-
-To ground these geometric concepts in actual atmospheric modeling, we apply compatible finite elements to the RSWE in a 2D formulation on the physical manifold $\mathcal{M}$:
-
-$$\partial _t u + (\zeta + f) u^\perp + \nabla \left( g h + \frac{1}{2}|u|^2 \right) = 0$$
-
-$$\partial _t h + \nabla \cdot (hu) = 0$$
-
-Where $u$ is velocity, $h$ is fluid depth, $\zeta = \text{curl}(u)$ is the scalar relative vorticity, and $f$ is the Coriolis parameter.
-
-### 2. De Rham Mapping for the Gung Ho Framework
-
-To ensure accurate structural transport, variables are mapped to a discrete exact sequence mimicking the continuous 2D rotated de Rham complex:
-
-$$V_0 \xrightarrow{\nabla^\perp} V_1 \xrightarrow{\nabla\cdot} V_2$$
-
-* **Depth ($h \in V_2$):** Modeled using discontinuous $L^2$ elements (2-forms, integrated over cell volumes/areas). This guarantees strict mass conservation via the divergence operator.
-* **Velocity ($u \in V_1$):** Modeled using $H(\text{div})$ elements (1-forms, integrated across cell edges/faces as fluxes).
-* **Vorticity ($\zeta \in V_0$):** Since $u$ sits in $H(\text{div})$, relative vorticity is a diagnostic quantity recovered cleanly by projecting the scalar curl of the velocity field onto the continuous $H^1$ space ($0$-forms, node-valued).
-
-### 3. Mimetic Balance and Discrete Potential Vorticity
-
-* **Spurious PV Mitigation:** Because the discrete operators inherit the continuous sequence identities exactly, the discrete curl of the gradient term $\nabla \left( g h + \frac{1}{2}|u|^2 \right)$ evaluates to zero identically in $V_0$.
-* This architectural choice prevents the pressure gradient force from acting as an unphysical, grid-aliased source of vorticity. Steady geostrophic balances are maintained down to machine precision, substantially reducing spurious potential vorticity generation during long-term integrations without relying on aggressive, non-physical numerical filters.
-
----
-
-I would be incredibly grateful if you would **check the rest of the syllabus against the GSPT/LCS material** as you offered. Given that we are coupling spatial differential forms directly to fast-slow timescales and flow trajectories, let’s make sure there are no other subtle space-conflation or manifold-mapping issues hiding in Lectures 5 and 6 before this goes to print for a doctoral seminar. What jumps out at you there?
