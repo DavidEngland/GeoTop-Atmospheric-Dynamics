@@ -8,16 +8,16 @@
 
 | Object | Definition |
 | --- | --- |
-| Manifold $M$ | Smooth space locally homeomorphic ($\cong$) to $\mathbb{R}^n$ |
-| Tangent space $T_pM$ | Vector space of velocity vectors (derivations) at $p \in M$ |
-| Cotangent space $T_p^*M$ | Dual space to $T_pM$; contains 1-forms (covectors) |
+| Physical manifold $\mathcal{M}$ | Smooth spatial domain (e.g., sphere) |
+| Tangent bundle $T\mathcal{M}$ | Holds velocity vector fields $u$ |
+| Cotangent bundle $T^*\mathcal{M}$ | Dual bundle to $T\mathcal{M}$; contains 1-form covectors $v$ |
 | $k$-form | Smooth, totally antisymmetric multilinear functional on $k$ tangent vectors |
 
-**Graded algebra of forms ($\Omega^*(M)$):**
+**Graded algebra of forms ($\Omega^k(\mathcal{M})$):**
 
-* **0-form** — scalar field ($p$, $T$, $\theta$)
+* **0-form** — scalar field ($\zeta$, $p$, $\theta$)
 * **1-form** $v$ — velocity / circulation degrees of freedom (d.o.f.)
-* **2-form** $\omega = dv$ — vorticity / flux d.o.f.
+* **2-form** $h$ — density/depth flux d.o.f.
 
 **Key operators:**
 
@@ -90,6 +90,8 @@ $$\partial_t \omega + \mathcal{L}_u \omega = 0 \quad \implies \quad \partial_t \
 
 ## IV. Dynamical Systems & Bifurcation Theory
 
+**Notation guardrail:** $M_0$ and $M_\epsilon$ denote phase-space critical/slow manifolds, not the physical manifold $\mathcal{M}$.
+
 **Local Bifurcations ($\dot{x} = f(x, \mu)$):**
 
 | Type | Normal Form | Atmospheric Example |
@@ -114,6 +116,8 @@ $$\partial_t \omega + \mathcal{L}_u \omega = 0 \quad \implies \quad \partial_t \
 ---
 
 ## V. Lagrangian Coherent Structures (LCS)
+
+**Space split:** LCS are material structures embedded in the physical manifold $\mathcal{M}$, while $M_0$ and $M_\epsilon$ are invariant manifolds in abstract state space.
 
 **Flow Map:** $F_{t_0}^{t}(x_0) = x(t; t_0, x_0)$ — maps initial fluid parcel positions to their positions at time $t$ by integrating $\dot{x} = u(x,t)$.
 
