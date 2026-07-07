@@ -85,10 +85,11 @@ Then calculate $\mathcal{L}_\mathbf{u}\theta$ for $u=Ex,\; v=-Ey$.
 
 ## **Problem 3: The Hairy Ball Theorem and Global Wind Fields**
 
-The Hairy Ball Theorem (Poincaré-Hopf Theorem applied to a 2-sphere $S^2$) states that any continuous tangent vector field on a even-dimensional sphere must have at least one point where the vector field vanishes.
+The Hairy Ball Theorem (Poincaré-Hopf Theorem applied to a 2-sphere $S^2$) states that any continuous tangent vector field on an even-dimensional sphere must have at least one point where the vector field vanishes.
 
 1. **The Euler Characteristic:** State the Euler characteristic $\chi(S^2)$ of a sphere. Write down the Poincaré-Hopf Index Theorem equation relating the indices of critical points $\text{ind}(X, x_i)$ to $\chi(S^2)$.
 2. **Meteorological Interpretation:** Imagine a idealized, perfectly smooth global horizontal wind field on Earth during a highly non-linear, stormy season.
+2. **Meteorological Interpretation:** Imagine an idealized, perfectly smooth global horizontal wind field on Earth during a highly non-linear, stormy season.
 * Is it topologically possible to have a global wind field that consists *entirely* of regular, non-vanishing zonal flow (purely West-to-East winds everywhere, including the poles)? Prove why or why not using the indices of the poles.
 * Suppose a global weather map features exactly $N$ ideal cyclonic lows (foci, index $+1$) and $M$ ideal anticyclonic highs (nodes, index $+1$). Assuming no other critical points exist except for saddle points (index $-1$) located at atmospheric col points (blocking patterns), derive a strict algebraic constraint equation for the number of saddles $S$ in terms of $N$ and $M$.
 * Apply your formula to the synoptic case $N=6$ cyclones and $M=5$ anticyclones, and compute the required number of saddles.

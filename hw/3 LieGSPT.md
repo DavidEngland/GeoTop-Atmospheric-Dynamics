@@ -37,9 +37,9 @@ Because $\mathcal{L}_{\mathbf{u}}\mathbf{A} \neq 0$, the vertical geometry is *n
 
 #### **Problem Statement**
 
-Let us construct a explicit fast-slow system for the local evolution of the vertical wind shear gradient, $X = \frac{\partial u}{\partial z}$, in the surface layer.
+Let us construct an explicit fast-slow system for the local evolution of the vertical wind shear gradient, $X = \frac{\partial u}{\partial z}$, in the surface layer.
 
-The fast timescale dynamics represent the turbulent eddy momentum flux relaxation. We invoke a mixing-length closure where the turbulent eddy viscosity scales with height and shear, $\nu_t = (\kappa z)^2 X$. The deviation of the local momentum transport from its steady equilibrium value balances against a rapid turbulent adjustment timescale $\varepsilon \ll 1$ (seconds):
+The fast-timescale dynamics represent turbulent eddy momentum-flux relaxation. We invoke a mixing-length closure where turbulent eddy viscosity scales with height and shear, $\nu_t = (\kappa z)^2 X$. The deviation of local momentum transport from its steady equilibrium value balances against a rapid turbulent-adjustment timescale $\varepsilon \ll 1$ (seconds):
 
 $$\varepsilon \frac{dX}{dt} = -\left[ (\kappa z)^2 X^2 - u_*^2 \right]$$
 
