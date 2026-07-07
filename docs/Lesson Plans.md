@@ -6,6 +6,13 @@
 
 **Prerequisites:** Differential Geometry, Numerical PDEs, and Dynamical Systems Theory.
 
+## Implementation Alignment Notes (2026 Refresh)
+
+1. **Week 0 to Week 1 Bridge:** Open with a direct comparison between coordinate-heavy spherical primitive-equation manipulations and coordinate-free exterior-calculus formulations to motivate the manifold and tangent-bundle formalism.
+2. **Lab Tooling Policy:** Core labs are Julia-first (with optional Python parity notebooks) to avoid multi-environment overhead during the 15-week timeline.
+3. **DEC Pedagogical Anchor:** Explicitly connect Week 14 content to circulation/structure preservation, emphasizing why mimetic geometry-preserving schemes are not interchangeable with standard dissipative discretizations.
+4. **Capstone Scaffolding:** Release a Week 5 project blueprint checkpoint so teams can commit early to one of three tracks (Geometric, Topological, Dynamical Systems) or submit an approved custom track.
+
 | Lecture | Core Topic | Geometric Objective | Mathematical Focus |
 | --- | --- | --- | --- |
 | **Lecture 1** | Foundations of DEC | Splitting topology and metric | Cochains, Exact Coboundary ($d^2=0$), Diagonal Hodge Star |

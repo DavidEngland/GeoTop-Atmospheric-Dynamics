@@ -4,6 +4,20 @@ Given the complexity, these are scoped perfectly for **groups of 3 to 4 students
 
 ---
 
+### Capstone Blueprint and Track Selection (Week 5 Milestone)
+
+By Week 5, each team submits a one-page blueprint with: (i) selected track or custom proposal, (ii) dataset and preprocessing path, (iii) governing equations/topological operators, (iv) validation metric plan, and (v) reproducibility checklist.
+
+Primary implementation path is **Julia-first**. Python equivalents remain acceptable when justified by data access or library maturity.
+
+**Recommended Track Mapping**
+
+1. **Geometric Track:** Project 4 (DEC solver) or a custom DEC shallow-water extension.
+2. **Topological Track:** Project 2 (Persistent Homology) with climate-field topology extension.
+3. **Dynamical Systems Track:** Project 3 (Nocturnal Boundary Layer cusp/canard geometry) or a Lorenz-style tipping reconstruction.
+
+---
+
 ### Project 1: Mapping the "Invisible Walls" of the Polar Vortex
 
 * **Real-World Problem:** Traditional methods of defining the polar vortex boundary rely on arbitrary thresholds (e.g., the 200-hPa geopotential height contour). This fails during structural split or displacement events (sudden stratospheric warmings), leading to poor mid-latitude winter weather predictability.
@@ -32,7 +46,7 @@ Given the complexity, these are scoped perfectly for **groups of 3 to 4 students
 * **The Mission:** Build a simplified fast-slow low-order dynamical system that treats the Stable Boundary Layer (SBL) as a geometric manifold exhibiting a cusp bifurcation.
 * **Data Source:** High-frequency tower observation data (e.g., from the legacy CASES-99 experiment or local UAH boundary layer profiling instruments measuring temperature and wind speed variance at multiple heights).
 * **Theory to Apply:** Catastrophe Theory (Thom's Cusp Normal Form), Fast-Slow Dynamics, and Fenichel's slow manifold stability boundaries.
-* **Code Deliverables:** A MATLAB or Python ODE solver initializing a low-order boundary layer model. The code must numerically sweep the parameter space of Geostrophic Wind ($U_g$) and Net Radiation ($R_n$) to find the state manifold boundaries.
+* **Code Deliverables:** A Julia or Python ODE solver initializing a low-order boundary layer model (MATCONT comparison optional). The code must numerically sweep the parameter space of Geostrophic Wind ($U_g$) and Net Radiation ($R_n$) to find the state manifold boundaries.
 * **Visuals & Presentation:** A beautifully rendered 3D state-space manifold surface. The group must project the actual observed real-world time-series trajectories of an evening boundary layer collapse onto the folded cusp surface, highlighting the hysteresis loop.
 
 ---

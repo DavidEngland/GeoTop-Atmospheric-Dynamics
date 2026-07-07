@@ -1,0 +1,74 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{natbib}
+\usepackage{hyperref}
+
+\geometry{margin=1in}
+
+\title{Summary of Fenichel's Geometric Singular Perturbation Theory}
+\author{Mathematical Exposition}
+\date{\today}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+Geometric Singular Perturbation Theory (GSPT), developed primarily by Neil Fenichel in a series of groundbreaking papers \citep{Fenichel1971, Fenichel1974, Fenichel1977, Fenichel1979}, provides a powerful framework for analyzing multi-scale dynamical systems. It reformulates classical singular perturbation problems (such as those treated by Tikhonov and Levinson) using the geometric language of invariant manifolds.
+
+\section{Mathematical Framework}
+Consider a fast-slow system of ordinary differential equations in the standard form:
+\begin{align}
+    \dot{x} &= f(x, y, \epsilon), \quad x \in \mathbb{R}^m \\
+    \dot{y} &= \epsilon g(x, y, \epsilon), \quad y \in \mathbb{R}^n
+\end{align}
+where $\cdot = \frac{d}{dt}$ denotes the fast time scale $t$. By rescaling to the slow time scale $\tau = \epsilon t$, the system becomes:
+\begin{align}
+    \epsilon \frac{dx}{d\tau} &= f(x, y, \epsilon) \\
+    \frac{dy}{d\tau} &= g(x, y, \epsilon)
+\end{align}
+
+\subsection{The Critical Manifold and Normal Hyperbolicity}
+Setting $\epsilon = 0$ yields the \emph{critical manifold}:
+\begin{equation}
+    M_0 = \{ (x, y) \in \mathbb{R}^m \times \mathbb{R}^n : f(x, y, 0) = 0 \}
+\end{equation}
+A subset $M_0$ is said to be \emph{normally hyperbolic} if the Jacobian matrix $D_x f(x, y, 0)$ has no eigenvalues with zero real part for all $(x, y) \in M_0$.
+
+\section{Fenichel's Theorems}
+Fenichel's seminal contributions establish the persistence and properties of these structures for $0 < \epsilon \ll 1$:
+\begin{itemize}
+    \item \textbf{Persistence:} Under the assumption of normal hyperbolicity, the critical manifold $M_0$ perturbs to a nearby smooth invariant manifold $M_\epsilon$ for sufficiently small $\epsilon > 0$ \citep{Fenichel1971, Fenichel1979}.
+    \item \textbf{Foliation and Rate Conditions:} The stable and unstable manifolds of $M_0$ persist as stable and unstable manifolds $W^s(M_\epsilon)$ and $W^u(M_\epsilon)$. Fenichel introduced critical rate conditions demonstrating that these manifolds are fibered by invariant families of leaves \citep{Fenichel1974, Fenichel1977}.
+\end{itemize}
+
+\begin{thebibliography}{9}
+
+\bibitem[Fenichel(1971)]{Fenichel1971}
+Neil Fenichel.
+\newblock Persistence and Smoothness of Invariant Manifolds for Flows.
+\newblock \emph{Indiana University Mathematics Journal}, 21\penalty0 (3):\penalty0 193--226, 1971.
+
+\bibitem[Fenichel(1974)]{Fenichel1974}
+Neil Fenichel.
+\newblock Asymptotic stability with rate conditions for dynamical systems.
+\newblock \emph{Bulletin of the American Mathematical Society}, 80\penalty0 (2):\penalty0 346--350, 1974.
+
+\bibitem[Fenichel(1977)]{Fenichel1977}
+Neil Fenichel.
+\newblock Asymptotic stability with rate conditions for dynamical systems.
+\newblock \emph{Bulletin of the American Mathematical Society}, 80\penalty0 (2):\penalty0 346--350, 1974 [Reprinted/Referenced 1977].
+
+\bibitem[Fenichel(1979)]{Fenichel1979}
+Neil Fenichel.
+\newblock Geometric Singular Perturbation Theory for Ordinary Differential Equations.
+\newblock \emph{Journal of Differential Equations}, 31\penalty0 (1):\penalty0 53--98, 1979.
+
+\end{thebibliography}
+
+\end{document}

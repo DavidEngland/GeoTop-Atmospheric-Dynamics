@@ -10,7 +10,7 @@
 #### **15-Week Updated Course Outline**
 
 **Unit 1: Differential Geometry and Coordinate-Free Physics**
-*   **Week 0: Motivation – Why Geometry Matters:** Introduction to coordinate-free thinking; why vector calculus becomes cumbersome on a rotating sphere; examples from Earth’s geometry and turbulence.
+*   **Week 0: Motivation – Why Geometry Matters:** Side-by-side comparison of "ad-hoc" spherical-coordinate formulations of primitive-equation terms (including Coriolis handling) versus coordinate-free exterior-calculus formulation using wedge products and the Hodge star ($\star$); explicit justification for why the geometric formalism reduces algebraic fragility and improves physical interpretability.
 *   **Week 1: Smooth Manifolds and Tangent Spaces:** Differentiable manifolds ($M$); coordinate charts and atlases; the tangent space ($T_pM$) and tangent bundle.
 *   **Week 2: Vector Fields, Lie Derivatives, and Flows:** Vector fields as derivations; Lie brackets; streamlines, streaklines, and pathlines in time-dependent atmospheric flows.
 *   **Week 3: Differential Forms and Exterior Calculus:** Dual spaces and 1-forms; wedge products; the **exterior derivative ($d$)** as a unified operator for $\nabla$, $\nabla \times$, and $\nabla \cdot$.
@@ -30,29 +30,44 @@
 
 **Unit 4: Computation, Machine Learning, and Numerical Cores**
 *   **Week 13: Modern Geometric Tools (TDA & GML):** **Topological Data Analysis (TDA)** via persistent homology and barcodes; **Geometric Machine Learning** using Graph Neural Networks for weather emulators.
-*   **Week 14: Discrete Exterior Calculus (DEC):** Exact conservation as a selection principle; building numerical cores that respect topological invariants; mimetic discretization on **MPAS and ICON grids**.
+*   **Week 14: Discrete Exterior Calculus (DEC):** Exact conservation as a selection principle; why conventional finite-difference closures can inject artificial dissipation and violate circulation structure; building mimetic numerical cores that preserve topological invariants on **MPAS and ICON grids**.
 *   **Week 15: Geometric Numerical Methods & Capstone Presentations:** Symplectic schemes; variational integrators; structure-preserving discretizations for the Navier-Stokes equations.
 
 ---
 
 #### **Software Laboratories**
-Labs are held bi-weekly to apply theory to **real-world atmospheric datasets** (ERA5, WRF, MPAS output, and CASES-99/Cabauw observations):
-1.  **Trajectory Analysis:** Calculating deformation tensors and strain versus rotation using Doppler radar fields.
-2.  **LCS Mapping:** Using the **FTLE Hub** codes (Python/MATLAB) to identify hurricane transport barriers.
-3.  **Bifurcation Analysis:** Using **AUTO or MATCONT** to track climate tipping points and regime shifts.
-4.  **TDA Lab:** Applying **persistent homology** to detect convective organization in radar reflectivity.
+Labs are held bi-weekly to apply theory to **real-world atmospheric datasets** (ERA5, WRF, MPAS output, and CASES-99/Cabauw observations). To reduce tool-friction in a 15-week graduate sequence, laboratories use a **Julia-first computational path** with optional Python equivalents:
+
+| Lab Module | Theoretical Focus | Target Dataset / Model | Primary Tooling |
+| --- | --- | --- | --- |
+| 1. Kinematic Deformation | Tangent spaces; strain-vs-rotation decomposition | Dual-Doppler radar fields / idealized Rankine vortex | Julia (`DifferentialEquations.jl`, `CairoMakie`) or Python (`xarray`, `SciPy`) |
+| 2. Transport Barriers | FTLE fields; hyperbolic LCS | Hurricane eyewall or atmospheric river (ERA5) | Julia (`LagrangianCoherentStructures.jl`) or Python equivalent |
+| 3. Bifurcation and Regime Shifts | Folded manifolds; cusp/Hopf bifurcations | Stommel 2-box AMOC model / nocturnal boundary layer collapse | Julia (`BifurcationKit.jl`) with optional `MATCONT` comparison |
+| 4. Topological Data Analysis | Persistent homology and barcodes | Convective-cell tracking (MRMS radar / WRF) | Julia (`Eirene.jl`) or Python (`Ripser.py`) |
 
 ---
 
 #### **Required Materials & Data Resources**
-*   **Software Stack:** Julia (for speed/differentiation), Python (SciPy, xarray, PyVista), ParaView (3D visualization), and Jupyter Notebooks.
+*   **Software Stack:** Julia as the primary computational environment (`DifferentialEquations.jl`, `BifurcationKit.jl`, `Flux/GeometricFlux`, `Eirene.jl`), with Python companion notebooks (`xarray`, `SciPy`, `Ripser.py`) for interoperability and replication studies; ParaView remains optional for 3D diagnostics.
 *   **Reading List:**
     *   *Geometric Mechanics and Symmetry* by Darryl D. Holm.
     *   *Nonlinear Dynamics and Statistical Theories for Oceans and Atmospheres* by Andrew Majda.
     *   *Elements of Applied Bifurcation Theory* by Yuri A. Kuznetsov.
+    *   *Mathematical Methods of Classical Mechanics* by Vladimir Arnold (Appendix 2 for geodesic-flow interpretation of ideal fluids).
+    *   *Geometric Fluid Dynamics* by Michael Cullen.
+    *   Haller, G. (2015), *Lagrangian Coherent Structures*, Annual Review of Fluid Mechanics.
 *   **Data Portals:** **Project Pythia** (training), **NASA Earthdata**, and the **Copernicus Climate Data Store** (ERA5).
 
 ---
 
 #### **Capstone Project**
 In lieu of a final exam, students must complete an original geometric/topological analysis of a research problem, such as the topological evolution of a tornado vortex or a symplectic integration of the shallow-water equations.
+
+#### **Capstone Project Blueprint (Released Week 5)**
+To support early scoping and prevent project drift, each team receives a Week 5 blueprint checkpoint and may either propose its own dataset/problem or select one of three structured tracks:
+
+1. **Geometric Track:** Implement a 1D shallow-water solver using DEC and compare its energy/enstrophy conservation to a center-difference baseline.
+2. **Topological Track:** Compute persistent homology on climate-simulation fields to quantify topology changes in $Z_{500}$ blocking patterns.
+3. **Dynamical Systems Track:** Reconstruct empirical tipping thresholds in a Lorenz-84 style model coupled to a slow ocean component.
+
+Each track requires: (i) a mathematically explicit model statement, (ii) reproducible code and diagnostics, and (iii) a physically interpretable uncertainty/sensitivity discussion.
